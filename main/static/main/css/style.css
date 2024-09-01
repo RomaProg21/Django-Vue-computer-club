@@ -1,0 +1,158 @@
+@media all and (min-width:960px) and (max-width: 2048px) {
+    .google-map{
+        width:100%;
+        height:70vh;
+    }
+
+}
+
+@media all and (min-width:801px) and (max-width: 959px) {
+
+    .google-map{
+        width:100%;
+        height:50vh;
+    }
+
+}
+
+@media all and (min-width:769px) and (max-width: 800px) {
+    .google-map{
+        width:100%;
+        height:50vh;
+    }
+
+}
+
+@media all and (min-width:569px) and (max-width: 768px) {
+    .google-map{
+        width:100%;
+        height:50vh;
+    }
+
+}
+
+@media all and (min-width:481px) and (max-width: 568px) {
+    .google-map{
+        width:100%;
+        height:50vh;
+    }
+    .logotel{
+        width:15vh;
+    }
+}
+
+@media all and (min-width:321px) and (max-width: 480px) {
+    .google-map{
+        width:100%;
+        height:50vh;
+    }
+    telhover{
+        width:50vh;
+        height: 70vh;
+    }
+    .logotel{
+
+        width:25vh !important;
+    }
+    }
+
+
+
+@media all and (min-width:0px) and (max-width: 320px) {
+    .google-map{
+        width:100%;
+        height:50vh;
+    }
+    .logotel{
+        width:15vh;
+    }
+
+}
+@font-face {
+    font-family: mokoto;
+    font-weight: normal;
+    src: url("../fonts/cuyabra-Regular [RUS by Zephyrus].ttf");
+}
+/* @font-face {
+    font-family: Dewberry;
+    font-weight: normal;
+    src: url("../fonts/Dewberry bold.ttf");
+} */
+body{
+    font:20px/1.5 mokoto;
+}
+
+/* Настройки маркированного списка */
+.hover-effect-scale {
+    list-style:none;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+.hover-effect-scale li {
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    margin: 0;
+    border: 5px solid #fff;
+    box-shadow: 1px 3px 1px 0 rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+/* Заголовок, текст и ссылка */
+.hover-effect-scale li h3{
+    color: #fff;
+    margin: 5px;
+}
+.hover-effect-scale li p{
+    color: #fff;
+    margin: 5px;
+}
+.hover-effect-scale li span {
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    color: #fff;
+    background: #000;
+    border-radius: 5px;
+    margin: 0 auto;
+    transition: all 0.4s ease-in-out;
+}
+.hover-effect-scale li span:hover {
+    background: #454545;
+    color: #fff;
+}
+/* Выезжающий блок с текстом */ 
+.hover-effect-scale li > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.hover-effect-scale li:hover > div {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+.hover-effect-scale li div {
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.35); /* Фон блока при наведении */
+    transition: all 0.4s ease-in-out;
+    color: #fff;
+}
+.hover-effect-scale li img {
+    transition: all 0.5s linear;
+}
+.hover-effect-scale li:hover img {
+    transform: scale(1.3);
+}
+.hover-effect-scale li:hover div {
+    opacity: 1;
+}
+     
+.imgRoma{
+    height: 80%;
+}

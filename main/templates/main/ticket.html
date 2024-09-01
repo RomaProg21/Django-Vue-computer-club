@@ -1,0 +1,205 @@
+
+
+{% extends 'main/layout.html' %}
+
+{% block title %}Half-Cloud{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+        <main>
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container justify-content-around">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img src="{% static 'main/img/logo.svg' %}" alt="" style="width: 30vh">
+                    </a>
+
+                    <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Войти</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="index.html#section_1">Главная</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" style="white-space: nowrap;" href="index.html#section_2">О нас</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="index.html#section_3">Тренера</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="index.html#section_4">Бронирование</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="index.html#section_5">Цены</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="index.html#section_6">Контакты</a>
+                            </li>
+                        </ul>
+
+                        <a href="{% url 'register' %}" class="btn custom-btn d-lg-block d-none">Регистрация</a>
+                    </div>
+                </div>
+            </nav>
+
+
+            <section class="ticket-section section-padding">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-10 mx-auto" style="margin-top:10vh;">
+                            <form class="custom-form ticket-form mb-5 mb-lg-0" action="#" method="post" role="form">
+                                <h2 class="text-center mb-4">Авторизация</h2>
+
+                                <div class="ticket-form-body">
+                                    {% csrf_token %}
+                                    {{form}}
+<!--                                    <input type="text" name="ticket-form-name" id="ticket-form-name" class="form-control" placeholder="Логин" required>-->
+
+<!--                                    <input type="tel" class="form-control" name="ticket-form-phone" placeholder="Пароль"  required="">-->
+
+
+
+                                    <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                        <button type="submit" class="form-control">Войти</button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                    </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <img src="{% static 'main/img/logo.svg' %}" alt="" style="width: 50vh">
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-telegram"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-whatsapp"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                       <div class="container">
+                <div class="row">
+
+<!--                    <div class="col-lg-6 col-12 mb-4 pb-2">-->
+<!--                        <h5 class="site-footer-title mb-3">Links</h5>-->
+
+<!--                        <ul class="site-footer-links">-->
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Home</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">About</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Artists</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Schedule</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Pricing</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Contact</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Остались вопросы?</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +7(917)-673-94-81" class="site-footer-link">
+                                +7(917)-673-94-81
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:hello@company.com" class="site-footer-link">
+                                HalfCloud@mail.ru
+                            </a>
+                        </p>
+                    </div>
+
+<!--                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">-->
+<!--                        <h5 class="site-footer-title mb-3">Location</h5>-->
+
+<!--                        <p class="text-white d-flex mt-3 mb-2">-->
+<!--                        Silang Junction South, Tagaytay, Cavite, Philippines</p>-->
+
+<!--                        <a class="link-fx-1 color-contrast-higher mt-3" href="#">-->
+<!--                            <span>Our Maps</span>-->
+<!--                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+                    <div class="site-footer-bottom">
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-lg-3 col-12 mt-5">
+                                    <p class="copyright-text"> © Half-Cloud</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                       </div>
+        </footer>
+
+<!--
+
+T e m p l a t e M o
+
+-->
+{% endblock %}

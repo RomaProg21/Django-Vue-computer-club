@@ -1,0 +1,3133 @@
+
+
+{% extends 'main/layout.html' %}
+
+{% block title %}Half-Cloud{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<div id="app" v-cloak>
+        <main>
+
+
+            
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container justify-content-around">
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'main/img/logo.svg' %}" alt=""  class="logotel" style="width: 30vh">
+                    </a>
+
+                    <a href="{% url 'auth' %}" class="btn custom-btn d-lg-none ms-auto me-4">Войти</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Главная</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" style="white-space: nowrap;" href="#section_2">О нас</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_3">Бронирование</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_4">Администраторы</a>
+                            </li>
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">Цены</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_6">Турниры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_7">Контакты</a>
+                            </li>
+                        </ul>
+<!--                        <a class="link-fx-1 color-contrast-higher mt-3 d-lg-block" href="ticket.html">-->
+<!--                            <span>Войти</span>-->
+<!--                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>-->
+<!--                        </a>-->
+                        {% if request.user.is_authenticated %}
+
+
+<div class="dropstart" style="margin-left:0px">
+  <a class="btn custom-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      {{request.user}}
+  </a>
+
+  <ul class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" style="padding:1vh;font-size:2.5vh;" href="{% url 'lk' %}">Личный кабинет</a></li>
+    <li><a class="dropdown-item" style="padding:1vh;font-size:2.5vh" href="{% url 'logout' %}">Выход</a></li>
+  </ul>
+</div>
+                        {% else %}
+                        <a href="{% url 'auth' %}" class="btn custom-btn d-lg-block d-none">Войти</a>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+
+            <section class="hero-section" id="section_1">
+                <div class="section-overlay"></div>
+
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div class="row">
+
+                        <div class="col-12 mt-auto mb-5 text-center">
+
+                            <img src="{% static 'main/img/logo2.svg' %}" alt="" style="width:80vh;margin-bottom:5vh">
+                            <br>
+                            <a class="btn custom-btn smoothscroll" href="#section_2">Начать</a>
+
+                        </div>
+
+                        <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
+                            <div class="date-wrap">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-clock me-2"></i>
+<!--                                    10 - 12<sup>th</sup>, Dec 2023-->
+                                    Круглосуточно
+                                </h5>
+                            </div>
+
+                            <div class="location-wrap mx-auto py-3 py-lg-0">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-geo-alt me-2"></i>
+                                   Казань, Проспект Ямашева, 37А
+                                </h5>
+                            </div>
+
+                            <div class="social-share">
+                                <ul class="social-icon d-flex align-items-center justify-content-center">
+
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-telegram"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-youtube"></span>
+                                        </a>
+                                    </li>
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-whatsapp"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                        <source src="{% static 'main/video/preview.mp4' %}" type="video/mp4">
+
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+
+            <section class="about-section section-padding" id="section_2">
+                <div class="container blur_none">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
+                            <div class="services-info">
+                                <h2 class="text-white mb-4">Погрузись в мир игр</h2>
+
+                                <p class="text-white">Это стильный, ни на что не похожий интерьер, крутая атмосфера, возможность вкусно перекусить во время игры и отличный сервис во всем.</p>
+
+<!--                                <h6 class="text-white mt-4">Once in Lifetime Experience</h6>-->
+
+                                <p class="text-white">Возможность прийти одному или командой. Буткемпы, стримерские, турниры разного уровня. Но самое главное, Half-cloud – это просто лучшее место для игры. Place to play 24/7.</p>
+
+<!--                                <h6 class="text-white mt-4">Whole Night Party</h6>-->
+
+                                <p class="text-white">Турниры каждый месяц!</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="about-text-wrap">
+                                <img src="{% static 'main/img/previewComp.jpg' %}" class="about-image img-fluid">
+
+<!--                                <div class="about-text-info d-flex">-->
+<!--                                    <div class="d-flex">-->
+<!--                                        <i class="about-text-icon bi-person"></i>-->
+<!--                                    </div>-->
+
+
+<!--&lt;!&ndash;                                    <div class="ms-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <h3>a happy moment</h3>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                        <p class="mb-0">your amazing festival experience with us</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section class="schedule-section section-padding" id="section_3">
+                <div class="container">
+
+                        
+                        <div v-show="modalValue==1" >
+                            <div class="modal  bd-example-modal-xl" id="exampleModal" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @click="clearAndClose" style="display:block;  position:fixed;
+      display:flex;
+      width:100%;
+      height:100%;
+      justify-content:center;
+      align-items:center;
+      background:rgba(0,0,0,.7);
+      overflow: hidden;
+      z-index:100;">
+    <div class="modal-dialog modal-xl" style="overflow-y:initial;" role="document" @click.stop>
+      <div class="modal-content" style="width:90vh;background:#f5f5f5;border:none">
+        <div class="modal-header" style="background:#f7943c" >
+          <h5 class="modal-title" style="color:white;"  id="exampleModalLabel">{% verbatim %}{{oborud}}{% endverbatim%}</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" @click="clearAndClose" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body" style="height:50vh;overflow-y: auto;">
+
+            <!-- туалет -->
+            <div v-show="value=='toilet'">
+                <div class="justify-content-center d-flex mb-3">
+                <img width="500" height="300" src="{% static 'main/img/toulet1.jfif' %}" alt="">
+            </div>
+            </div>
+            <!-- --- -->
+
+
+            <div v-show="value.number>=1 && value.number<=10"> <!-- для обычных пк -->
+                 <div class="form-group row" >
+                     <label class="col-sm-5 col-form-label "  for="datePicker">Выберите дату</label>
+
+                         <div class="col-sm-7">
+                          <input  id="datePicker" type="date" class="form-control form-control-sm">
+                         </div>
+
+      </div>
+                 <div class="form-group row">
+      <label class="col-sm-7 col-form-label" for="balance_vg">Выберите время:{% verbatim %}  {{timeUser}}{{timeMinuteUser}} - {{endBron}}  {% endverbatim %}</label>
+      
+      </div>
+      <!-- <div v-if="bronirovanie.length>0">
+      <ul class="list-group" >
+        <li class="list-group-item" v-for="(obrd,idx) in bronirovanie" :key="obrd" >Занято до {% verbatim %}  {{obrd.fields.end_date}} {% endverbatim %}</li>
+      </ul>
+    </div>
+      <div v-if="bronirovanie.length==0">
+        Свободно
+      </div> -->
+      <div class="justify-content-center d-flex mb-3" >
+       
+        <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=0" :class="[activeCustom==0 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black;margin-right:5vh;"  data-dismiss="modal" >Часы</button>
+        <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=1" :class="[activeCustom==1 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black"  data-dismiss="modal" >Минуты</button>
+
+      </div>
+      <div class="wraptime" v-show="activeCustom==0">
+        <span  class="wrapIn text-center"   style="padding:10px;text-align: center;border-radius: 10px;" v-for="(time,idx) in arrayTime" :class="[time.status==0 ? 'itemActive' : 'itemFalse']" @click="TimeToBron(time)">{% verbatim %}{{time.time}}{% endverbatim %}</span>
+      </div>
+      
+      <div class="wraptime" v-show="activeCustom==1">
+        <span  class="wrapIn text-center " :class="[min.status==0 ? 'itemActive' : 'itemFalse']"  style="padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(min,idx) in arrayMinute" @click="TimeToBron1(min)" >{% verbatim %}{{min.time}}{% endverbatim %}</span>
+      </div>      
+      <div v-show="activeCustom==2">
+        <div class="d-flex justify-content-center">
+        <label  class="col-sm-7 col-form-label text-center" for="balance_vg">До скольки?</label>
+        </div>
+      <div class="wraptime" >
+        <span  class="wrapIn text-center itemActive "   style="margin:5 auto;width:70px;height:40px;padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(bron,idx) in timeInBron" @click="TimeToBron2(bron)" >{% verbatim %}{{bron.time}}{% endverbatim %}</span>
+      </div>
+      </div>
+      <div class="wraptime" v-show="activeCustom==3">
+        
+        <!-- <div class="d-flex justify-content-center">
+            <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите наушники</label>
+            </div>
+            <div>
+        <select class="form-select" v-model="selectPerefNaush" aria-label="Default select example" >
+            <option value="" selected>Стандартные</option>
+            <option v-for="naush in naushPeref" :value="naush.pk">{% verbatim %} {{naush.fields.name}} {% endverbatim %}</option>
+          </select>
+          <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefNaush==6" width="240"  style="border-radius:15px;" height="170" src="{% static 'main/img/Logitech G935.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefNaush==5" width="240"  style="border-radius:15px;" height="170" src="{% static 'main/img/HyperX Cloud2.png' %}" alt="">
+            </div>
+        </div>
+        <br>
+       
+        <div class="d-flex justify-content-center">
+            <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите мышку</label>
+            </div>
+            <div>
+        <select class="form-select" v-model="selectPerefMouse" aria-label="Default select example" >
+            <option value="" selected>Стандартная</option>
+            <option v-for="mouse in mousePeref" :value="mouse.pk">{% verbatim %} {{mouse.fields.name}} {% endverbatim %}</option>
+          </select>
+          <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefMouse==4" width="155"  style="border-radius:15px;" height="200" src="{% static 'main/img/razer deathadder v3 pro.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefMouse==3" width="195"  style="border-radius:15px;" height="200" src="{% static 'main/img/logitech pro x superlight.png' %}" alt="">
+            </div>
+        </div>
+        <br>
+       
+        <div class="d-flex justify-content-center">
+            <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите коврик</label>
+            </div>
+            <div>
+        <select class="form-select" v-model="selectPerefKovrik" aria-label="Default select example" >
+            <option value="" selected>Стандартный</option>
+            <option v-for="kovrik in kovrikPeref" :value="kovrik.pk">{% verbatim %} {{kovrik.fields.name}} {% endverbatim %}</option>
+          </select>
+          <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefKovrik==8" width="280"  style="border-radius:15px;" height="160" src="{% static 'main/img/artisan FX zero soft.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefKovrik==7" width="280"  style="border-radius:15px;" height="160" src="{% static 'main/img/xtrfy gp4.png' %}" alt="">
+            </div>
+        </div>
+        <br>
+       
+        <div class="d-flex justify-content-center">
+            <label  class="col-sm-9 col-form-label text-center" for="balance_vg">Выберите клавиатуру</label>
+            </div>
+            <div>
+        <select class="form-select" v-model="selectPerefKeyboard" aria-label="Default select example" >
+            <option value="" selected>Стандартная</option>
+            <option v-for="keyboard in keyboardPeref" :value="keyboard.pk">{% verbatim %} {{keyboard.fields.name}} {% endverbatim %}</option>
+          </select>
+          <div class="d-flex justify-content-center mt-1">
+          <img v-if="selectPerefKeyboard==9" width="280"  style="border-radius:15px;" height="140" src="{% static 'main/img/image_2023-11-27_22-42-19.png' %}" alt="">
+        </div>
+        <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefKeyboard==10" width="280"  style="border-radius:15px;" height="140" src="{% static 'main/img/image_2023-11-27_22-42-24.png' %}" alt="">
+          </div>
+
+        
+    </div> -->
+         
+      </div>
+
+
+            </div>
+
+            <div v-show="value.number==11"> <!-- для ps STANDART -->
+                <div class="d-flex justify-content-center mb-1">
+                <img src="{% static 'main/img/psStandart.png' %}" style="width:65%;height:30vh;border-radius:10px;;" alt="">
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-5 col-form-label "  for="datePicker">Выберите дату</label>
+
+                        <div class="col-sm-7">
+                         <input  id="datePicker1" type="date" class="form-control form-control-sm">
+                        </div>
+
+     </div>
+                <div class="form-group row">
+     <label class="col-sm-7 col-form-label" for="balance_vg">Выберите время:{% verbatim %}  {{timeUser}}{{timeMinuteUser}} - {{endBron}}  {% endverbatim %}</label>
+     
+     </div>
+     <!-- <div v-if="bronirovanie.length>0">
+     <ul class="list-group" >
+       <li class="list-group-item" v-for="(obrd,idx) in bronirovanie" :key="obrd" >Занято до {% verbatim %}  {{obrd.fields.end_date}} {% endverbatim %}</li>
+     </ul>
+   </div>
+     <div v-if="bronirovanie.length==0">
+       Свободно
+     </div> -->
+     <div class="justify-content-center d-flex mb-3" >
+      
+       <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=0" :class="[activeCustom==0 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black;margin-right:5vh;"  data-dismiss="modal" >Часы</button>
+       <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=1" :class="[activeCustom==1 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black"  data-dismiss="modal" >Минуты</button>
+
+     </div>
+     <div class="wraptime" v-show="activeCustom==0">
+       <span  class="wrapIn text-center"   style="padding:10px;text-align: center;border-radius: 10px;" v-for="(time,idx) in arrayTime" :class="[time.status==0 ? 'itemActive' : 'itemFalse']" @click="TimeToBron(time)">{% verbatim %}{{time.time}}{% endverbatim %}</span>
+     </div>
+     
+     <div class="wraptime" v-show="activeCustom==1">
+       <span  class="wrapIn text-center " :class="[min.status==0 ? 'itemActive' : 'itemFalse']"  style="padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(min,idx) in arrayMinute" @click="TimeToBron1(min)" >{% verbatim %}{{min.time}}{% endverbatim %}</span>
+     </div>      
+     <div v-show="activeCustom==2">
+       <div class="d-flex justify-content-center">
+       <label  class="col-sm-7 col-form-label text-center" for="balance_vg">До скольки?</label>
+       </div>
+     <div class="wraptime" >
+       <span  class="wrapIn text-center itemActive "   style="margin:5 auto;width:70px;height:40px;padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(bron,idx) in timeInBron" @click="TimeToBron2(bron)" >{% verbatim %}{{bron.time}}{% endverbatim %}</span>
+     </div>
+     </div>
+     <div class="wraptime" v-show="activeCustom==3">
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите наушники</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefNaush" aria-label="Default select example" >
+           <option value="" selected>Стандартные</option>
+           <option v-for="naush in naushPeref" :value="naush.pk">{% verbatim %} {{naush.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите мышку</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefMouse" aria-label="Default select example" >
+           <option value="" selected>Стандартная</option>
+           <option v-for="mouse in mousePeref" :value="mouse.pk">{% verbatim %} {{mouse.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите коврик</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefKovrik" aria-label="Default select example" >
+           <option value="" selected>Стандартный</option>
+           <option v-for="kovrik in kovrikPeref" :value="kovrik.pk">{% verbatim %} {{kovrik.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-9 col-form-label text-center" for="balance_vg">Выберите клавиатуру</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefKeyboard" aria-label="Default select example" >
+           <option value="" selected>Стандартная</option>
+           <option v-for="keyboard in keyboardPeref" :value="keyboard.pk">{% verbatim %} {{keyboard.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+        
+     </div>
+            </div>
+
+            <div v-show="value.number==12"> <!-- для ps VIP -->
+                <div class="d-flex justify-content-center mb-1">
+                <img src="{% static 'main/img/PSvip.png' %}" style="width:65%;height:30vh;border-radius:10px;" alt="">
+                </div>
+                <div class="form-group row" >
+                    <label class="col-sm-5 col-form-label "  for="datePicker">Выберите дату</label>
+
+                        <div class="col-sm-7">
+                         <input  id="datePicker2" type="date" class="form-control form-control-sm">
+                        </div>
+
+     </div>
+                <div class="form-group row">
+     <label class="col-sm-7 col-form-label" for="balance_vg">Выберите время:{% verbatim %}  {{timeUser}}{{timeMinuteUser}} - {{endBron}}  {% endverbatim %}</label>
+     
+     </div>
+     <!-- <div v-if="bronirovanie.length>0">
+     <ul class="list-group" >
+       <li class="list-group-item" v-for="(obrd,idx) in bronirovanie" :key="obrd" >Занято до {% verbatim %}  {{obrd.fields.end_date}} {% endverbatim %}</li>
+     </ul>
+   </div>
+     <div v-if="bronirovanie.length==0">
+       Свободно
+     </div> -->
+     <div class="justify-content-center d-flex mb-3" >
+      
+       <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=0" :class="[activeCustom==0 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black;margin-right:5vh;"  data-dismiss="modal" >Часы</button>
+       <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=1" :class="[activeCustom==1 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black"  data-dismiss="modal" >Минуты</button>
+
+     </div>
+     <div class="wraptime" v-show="activeCustom==0">
+       <span  class="wrapIn text-center"   style="padding:10px;text-align: center;border-radius: 10px;" v-for="(time,idx) in arrayTime" :class="[time.status==0 ? 'itemActive' : 'itemFalse']" @click="TimeToBron(time)">{% verbatim %}{{time.time}}{% endverbatim %}</span>
+     </div>
+     
+     <div class="wraptime" v-show="activeCustom==1">
+       <span  class="wrapIn text-center " :class="[min.status==0 ? 'itemActive' : 'itemFalse']"  style="padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(min,idx) in arrayMinute" @click="TimeToBron1(min)" >{% verbatim %}{{min.time}}{% endverbatim %}</span>
+     </div>      
+     <div v-show="activeCustom==2">
+       <div class="d-flex justify-content-center">
+       <label  class="col-sm-7 col-form-label text-center" for="balance_vg">До скольки?</label>
+       </div>
+     <div class="wraptime" >
+       <span  class="wrapIn text-center itemActive "   style="margin:5 auto;width:70px;height:40px;padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(bron,idx) in timeInBron" @click="TimeToBron2(bron)" >{% verbatim %}{{bron.time}}{% endverbatim %}</span>
+     </div>
+     </div>
+     <div class="wraptime" v-show="activeCustom==3">
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите наушники</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefNaush" aria-label="Default select example" >
+           <option value="" selected>Стандартные</option>
+           <option v-for="naush in naushPeref" :value="naush.pk">{% verbatim %} {{naush.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите мышку</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefMouse" aria-label="Default select example" >
+           <option value="" selected>Стандартная</option>
+           <option v-for="mouse in mousePeref" :value="mouse.pk">{% verbatim %} {{mouse.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите коврик</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefKovrik" aria-label="Default select example" >
+           <option value="" selected>Стандартный</option>
+           <option v-for="kovrik in kovrikPeref" :value="kovrik.pk">{% verbatim %} {{kovrik.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+
+       <!-- <div class="d-flex justify-content-center">
+           <label  class="col-sm-9 col-form-label text-center" for="balance_vg">Выберите клавиатуру</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefKeyboard" aria-label="Default select example" >
+           <option value="" selected>Стандартная</option>
+           <option v-for="keyboard in keyboardPeref" :value="keyboard.pk">{% verbatim %} {{keyboard.fields.name}} {% endverbatim %}</option>
+         </select>
+       </div> -->
+        
+     </div>
+
+            </div>
+
+            <div v-show="value.number>=13 && value.number<=22"> <!-- для пк VIP -->
+
+                <div class="form-group row" >
+                    <label class="col-sm-5 col-form-label "  for="datePicker">Выберите дату</label>
+
+                        <div class="col-sm-7">
+                         <input  id="datePicker3" type="date" class="form-control form-control-sm">
+                        </div>
+
+     </div>
+                <div class="form-group row">
+     <label class="col-sm-7 col-form-label" for="balance_vg">Выберите время:{% verbatim %}  {{timeUser}}{{timeMinuteUser}} - {{endBron}}  {% endverbatim %}</label>
+     
+     </div>
+     <!-- <div v-if="bronirovanie.length>0">
+     <ul class="list-group" >
+       <li class="list-group-item" v-for="(obrd,idx) in bronirovanie" :key="obrd" >Занято до {% verbatim %}  {{obrd.fields.end_date}} {% endverbatim %}</li>
+     </ul>
+   </div>
+     <div v-if="bronirovanie.length==0">
+       Свободно
+     </div> -->
+     <div class="justify-content-center d-flex mb-3" >
+      
+       <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=0" :class="[activeCustom==0 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black;margin-right:5vh;"  data-dismiss="modal" >Часы</button>
+       <button  type="button" class="btn btn-outline-danger custombtn " @click="activeCustom=1" :class="[activeCustom==1 ? 'activeCustom' : '']" style="border:1px solid #f7943c;color:black"  data-dismiss="modal" >Минуты</button>
+
+     </div>
+     <div class="wraptime" v-show="activeCustom==0">
+       <span  class="wrapIn text-center"   style="padding:10px;text-align: center;border-radius: 10px;" v-for="(time,idx) in arrayTime" :class="[time.status==0 ? 'itemActive' : 'itemFalse']" @click="TimeToBron(time)">{% verbatim %}{{time.time}}{% endverbatim %}</span>
+     </div>
+     
+     <div class="wraptime" v-show="activeCustom==1">
+       <span  class="wrapIn text-center " :class="[min.status==0 ? 'itemActive' : 'itemFalse']"   style="padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(min,idx) in arrayMinute" @click="TimeToBron1(min)" >{% verbatim %}{{min.time}}{% endverbatim %}</span>
+     </div>      
+     <div v-show="activeCustom==2">
+       <div class="d-flex justify-content-center">
+       <label  class="col-sm-7 col-form-label text-center" for="balance_vg">До скольки?</label>
+       </div>
+     <div class="wraptime" >
+       <span  class="wrapIn text-center itemActive "   style="margin:5 auto;width:70px;height:40px;padding:10px;vertical-align: middle;text-align: center;border-radius: 10px;" v-for="(bron,idx) in timeInBron" @click="TimeToBron2(bron)" >{% verbatim %}{{bron.time}}{% endverbatim %}</span>
+     </div>
+     </div>
+     <div class="wraptime" v-show="activeCustom==3">
+       <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите наушники</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefNaush" aria-label="Default select example" >
+           <option value="" selected>Стандартные</option>
+           <option v-for="naush in naushPeref" :value="naush.pk">{% verbatim %} {{naush.fields.name}} {% endverbatim %}</option>
+         </select>
+
+         <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefNaush==6" width="240"  style="border-radius:15px;" height="170" src="{% static 'main/img/Logitech G935.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefNaush==5" width="240"  style="border-radius:15px;" height="170" src="{% static 'main/img/HyperX Cloud2.png' %}" alt="">
+            </div>
+
+       </div>
+       <br>
+       <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите мышку</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefMouse" aria-label="Default select example" >
+           <option value="" selected>Стандартная</option>
+           <option v-for="mouse in mousePeref" :value="mouse.pk">{% verbatim %} {{mouse.fields.name}} {% endverbatim %}</option>
+         </select>
+         <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefMouse==4" width="155"  style="border-radius:15px;" height="200" src="{% static 'main/img/razer deathadder v3 pro.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefMouse==3" width="195"  style="border-radius:15px;" height="200" src="{% static 'main/img/logitech pro x superlight.png' %}" alt="">
+            </div>
+       </div>
+<br>
+       <div class="d-flex justify-content-center">
+           <label  class="col-sm-7 col-form-label text-center" for="balance_vg">Выберите коврик</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefKovrik" aria-label="Default select example" >
+           <option value="" selected>Стандартный</option>
+           <option v-for="kovrik in kovrikPeref" :value="kovrik.pk">{% verbatim %} {{kovrik.fields.name}} {% endverbatim %}</option>
+         </select>
+         <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefKovrik==8" width="280"  style="border-radius:15px;" height="160" src="{% static 'main/img/artisan FX zero soft.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefKovrik==7" width="280"  style="border-radius:15px;" height="160" src="{% static 'main/img/xtrfy gp4.png' %}" alt="">
+            </div>
+       </div>
+<br>
+       <div class="d-flex justify-content-center">
+           <label  class="col-sm-9 col-form-label text-center" for="balance_vg">Выберите клавиатуру</label>
+           </div>
+           <div>
+       <select class="form-select" v-model="selectPerefKeyboard" aria-label="Default select example" >
+           <option value="" selected>Стандартная</option>
+           <option v-for="keyboard in keyboardPeref" :value="keyboard.pk">{% verbatim %} {{keyboard.fields.name}} {% endverbatim %}</option>
+         </select>
+         <div class="d-flex justify-content-center mt-1">
+            <img v-if="selectPerefKeyboard==9" width="280"  style="border-radius:15px;" height="140" src="{% static 'main/img/image_2023-11-27_22-42-19.png' %}" alt="">
+          </div>
+          <div class="d-flex justify-content-center mt-1">
+              <img v-if="selectPerefKeyboard==10" width="280"  style="border-radius:15px;" height="140" src="{% static 'main/img/image_2023-11-27_22-42-24.png' %}" alt="">
+            </div>
+       </div>
+        
+     </div>
+
+            </div>
+             <div v-show="value=='coffee'"> <!-- для coffee -->
+                coffee
+            </div>
+             <div v-show="value=='garderob'"> <!-- для garderob -->
+                 garderob
+
+            </div>
+             <div v-show="value=='standartzone'"> <!-- для standartzone -->
+                  <div class="d-flex justify-content-center mb-1">
+                <img  class="img-fluid" src="{% static 'main/img/standartPC.png' %}"  style="width:50%;height:45vh;border-radius:15px" alt="">
+                </div>
+                <div>
+                    <div class="d-flex justify-content-center mb-1"><h5>Открытая игровая зона на 10 мест</h5></div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Видеокарта</strong>: RTX 2070 Super
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>ОЗУ</strong>: 16 ГБ
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Процессор</strong>: AMD Ryzen 5 3600
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Монитор</strong>: BenQ XL2411K 24" 144 Hz
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Наушники</strong>: Razer Kraken V3 X
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Клавиатура</strong>: Zet Gaming Blade
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Мышь</strong>: Zet Gaming Edge X
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Коврик</strong>: Zowie
+                    </div>
+
+                </div>
+
+            </div>
+             <div v-show="value=='vipzone'"> <!-- для vipzone -->
+                  <div class="d-flex justify-content-center mb-1">
+                <img src="{% static 'main/img/vipPC.png' %}" style="width:65%;height:30vh;border-radius:15px;" alt="">
+                </div>
+                <div>
+                    <div class="d-flex justify-content-center mb-1"><h5>Закрытая игровая зона на 10 мест</h5></div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Видеокарта</strong>: RTX 3070 ti
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>ОЗУ</strong>: 32 ГБ
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Процессор</strong>: AMD Ryzen 5 5600X
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Монитор</strong>: BenQ XL2566K 24" 360 Hz
+                    </div>
+                    <div class="d-flex justify-content-start mb-1">
+                        <strong>Девайсы</strong>: standart/выбор
+                    </div>
+                    
+
+                </div>
+            </div>
+           
+
+        </div>
+        <div class="modal-footer justify-content-between">
+            <div v-show="PriceShow"><strong>{% verbatim %}{{totalAmount}}{% endverbatim %}</strong> рублей</div>
+            <div v-show="PriceShow==false"></div>
+        <div>
+            <button style="margin-right:3vh" v-show="activeCustom==3" class="btn btn-outline-success" @click="BronirovanieOnline()">Забронировать</button>  
+            <button  type="button" class="btn btn-danger" style="border:1px solid #f7943c;background:#f7943c"  data-dismiss="modal" @click="clearAndClose">Закрыть</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+                       </div>
+
+                       <div aria-live="polite" aria-atomic="true" class="position-relative">
+                        <!-- Позиционируйте его: -->
+                        <!-- - `.toast-container` для промежутка между тостами -->
+                        <!-- - `.position-absolute`, `top-0` & `end-0` чтобы тосты располагались в правом верхнем углу -->
+                        <!-- - `.p-3` чтобы тосты не прилипали к краю контейнера  -->
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                       <!-- всплывающее уведомление Online -->
+                       <!-- <div class="position-fixed bottom-0 end-0 p-3 "  style="z-index: 11"> -->
+                        <div id="liveToast" class="toast " v-if="successUved=='success'" :class="[successUved=='success' ? 'show' : 'hide' ]"  role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="toast-header" style="background: #f7943c;">
+                            
+                            <strong class="me-auto" style="color:white;">Half-cloud</strong>
+                          <!--  <small>11 мин назад</small> -->
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+                          </div>
+                          <div class="toast-body text-center">
+                          {% verbatim %}{{successBron}} {% endverbatim %}
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                       <!-- --- -->
+
+                          <!-- всплывающее уведомление Турнир -->
+   <!-- <div class="position-fixed bottom-0 end-0 "style="z-index: 11"> -->
+    <div id="liveToast1" class="toast "  v-if="TourModal==2"  :class="[TourModal==2 ? 'show' : 'hide' ]"  role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header" style="background: #f7943c;">
+        
+        <strong class="me-auto" style="color:white;">Half-cloud</strong>
+      <!--  <small>11 мин назад</small> -->
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+      </div>
+      <div class="toast-body text-center">
+     Вы успешно зарегистрировались на турнир {% verbatim %}{{nameTournament}}! Подробнее в личном кабинете!  {% endverbatim %}
+      </div>
+    </div>
+  <!-- </div> -->
+
+   <!-- --- -->
+</div>
+</div>
+
+
+                        <div class="col-12 text-center">
+                           
+                                {% if user.is_authenticated %}
+                                   
+                                
+                                   
+                              
+                            <h2 class="text-white mb-4">Бронирование</h2>
+<!--                            <div class="table-responsive">-->
+
+
+                                <!-- интерактивная карта -->
+                                <div class="mapcard" v-if="objOborud!==null">
+
+                                    <svg viewBox="0 0 1143 684" class="inerkativcard">
+                                       <!-- playstation --> <path class="part " :class="[objOborud[10].fields.status==0 ? 'clr' : 'clrr']" d="m 757.81345,461.84477 133.99697,0.0403 0.16101,-137.82085 -134.11773,-0.28176 z" @click="playstation"  />
+
+                                       <!-- playstation VIP --> <path class="part " :class="[objOborud[11].fields.status==0 ? 'clr' : 'clrr']"  d="m 757.99219,467.49219 v 49.44531 l 4.79687,-0.008 0.0781,37.90625 -4.91407,0.0234 -0.0625,50.19532 h 134.0625 l -0.004,-138.12115 z" @click="playstationVip" />
+                                        <!-- 1 pc standart --> <path class="part " :class="[objOborud[0].fields.status==0 ? 'clr' : 'clrr']"  d="m 647.88682,150.70131 -0.32201,33.16717 48.3017,0.32201 -0.32201,-34.1332 z" @click="pcStandart1" />
+                                        <!-- 2 pc standart --> <path class="part " :class="[objOborud[1].fields.status==0 ? 'clr' : 'clrr']" d="m 697.15456,150.21829 -0.16101,34.53572 47.73819,-0.16101 -0.0805,-34.93823 z" @click="pcStandart2" />
+                                        <!-- 3 pc standart --> <path class="part " :class="[objOborud[2].fields.status==0 ? 'clr' : 'clrr']" d="m 745.99035,150.10886 0.0569,34.78062 47.98702,-0.0569 -0.39847,-34.9514 z" @click="pcStandart3" />
+                                        <!-- 4 pc standart --> <path class="part " :class="[objOborud[3].fields.status==0 ? 'clr' : 'clrr']" d="m 794.83123,149.93808 0.0569,35.1791 48.15779,-0.34155 -0.2277,-35.06524 z" @click="pcStandart4" />
+                                        <!-- 5 pc standart --> <path class="part "  :class="[objOborud[4].fields.status==0 ? 'clr' : 'clrr']" d="m 843.95673,149.99501 -0.11385,34.9514 48.21471,-0.17078 -0.39847,-34.7237 z" @click="pcStandart5"/>
+                                        <!-- 6 pc standart --> <path class="part " :class="[objOborud[5].fields.status==0 ? 'clr' : 'clrr']" d="m 695.95406,284.05127 -0.0569,34.89447 -48.21472,-0.34154 -0.0569,-34.72371 z" @click="pcStandart6" />
+                                        <!-- 7 pc standart --> <path class="part " :class="[objOborud[6].fields.status==0 ? 'clr' : 'clrr']" d="m 696.9787,283.99434 0.0569,34.66678 47.87317,-0.0569 -0.17077,-34.89448 z" @click="pcStandart7" />
+                                        <!-- 8 pc standart --> <path class="part " :class="[objOborud[7].fields.status==0 ? 'clr' : 'clrr']" d="m 746.16112,284.10819 -0.28462,34.55293 48.32856,-0.11385 -0.34154,-34.83755 z" @click="pcStandart8" />
+                                        <!-- 9 pc standart --> <path class="part " :class="[objOborud[8].fields.status==0 ? 'clr' : 'clrr']" d="m 794.94507,283.76665 -0.0569,34.95139 47.75932,0.0569 0.11385,-34.83755 z" @click="pcStandart9" />
+                                        <!-- 10 pc standart --> <path class="part " :class="[objOborud[9].fields.status==0 ? 'clr' : 'clrr']" d="m 843.78595,284.05127 0.17078,34.60985 47.81624,-0.17077 -0.0569,-34.55293 z" @click="pcStandart10" />
+                                        <!-- STANDART PC INFO --> <path class="part " d="m 647.56858,185.80027 0.45539,97.22636 243.63515,-0.68309 -0.45539,-96.54327 z" @click="standartZone" />
+                                        <!-- 1 pc VIP --> <path class="part " :class="[objOborud[12].fields.status==0 ? 'clr' : 'clrr']" d="m 310.01642,455.00203 0.16101,34.69672 47.81868,0.0805 -0.161,-34.69672 z" @click="pcVip1" />
+                                        <!-- 2 pc VIP --> <path class="part " :class="[objOborud[13].fields.status==0 ? 'clr' : 'clrr']" d="m 358.88164,455.00203 0.24151,34.77722 47.73818,-0.0805 0.0805,-34.69672 z" @click="pcVip2" />
+                                        <!-- 3 pc VIP --> <path class="part " :class="[objOborud[14].fields.status==0 ? 'clr' : 'clrr']" d="m 408.14581,455.05127 -0.2277,34.7237 48.15779,0.11385 -0.2277,-35.00833 z" @click="pcVip3" />
+                                        <!-- 4 pc VIP --> <path class="part " :class="[objOborud[15].fields.status==0 ? 'clr' : 'clrr']" d="m 456.87284,454.93742 0.0569,34.83755 h 48.32856 l -0.56924,-35.06525 z" @click="pcVip4" />
+                                        <!-- 5 pc VIP --> <path class="part " :class="[objOborud[16].fields.status==0 ? 'clr' : 'clrr']" d="m 505.94141,455.05127 0.11385,34.89447 47.93009,-0.0569 -0.17077,-34.9514 -47.7024,0.39847 z" @click="pcVip5" />
+                                        <!-- 6 pc VIP --> <path class="part " :class="[objOborud[17].fields.status==0 ? 'clr' : 'clrr']" d="m 309.89481,570.03795 0.17077,34.43908 47.93009,0.11385 -0.11385,-34.55293 z" @click="pcVip6" />
+                                        <!-- 7 pc VIP --> <path class="part " :class="[objOborud[18].fields.status==0 ? 'clr' : 'clrr']" d="m 358.96338,570.03795 0.34155,34.7237 47.36085,0.11385 0.0569,-34.89447 z" @click="pcVip7" />
+                                        <!-- 8 pc VIP --> <path class="part " :class="[objOborud[19].fields.status==0 ? 'clr' : 'clrr']" d="m 407.91811,570.03795 0.11385,34.7237 48.10086,0.17077 -0.22769,-35.06524 z" @click="pcVip8" />
+                                        <!-- 9 pc VIP --> <path class="part " :class="[objOborud[20].fields.status==0 ? 'clr' : 'clrr']" d="m 456.92976,569.9241 v 34.89448 l 48.10087,-0.11385 -0.11385,-34.89448 z" @click="pcVip9" />
+                                        <!-- 10 pc VIP --> <path class="part " :class="[objOborud[21].fields.status==0 ? 'clr' : 'clrr']" d="m 505.99834,570.03795 0.0569,34.78063 47.87317,-0.11385 -0.11385,-34.9514 z" @click="pcVip10" />
+                                        <!-- VIP PC INFO--> <path class="part " d="m 310.25793,491.0673 0.16101,77.44373 243.27957,0.161 v -19.48168 h -4.66917 l -0.48302,-38.80237 h 4.99118 v -19.48169 z" @click="VipZone" />
+                                         <!-- COFFEE <path class="part " d="m 472.06863,388.8287 v 60.53813 l 81.95189,0.48302 -0.32201,-61.02115 z" @click="coffee" /> -->
+                                        <!-- GARDEROB <path class="part " d="m 466.59444,388.8287 0.32201,60.69914 -156.81953,0.32201 -0.32201,-61.18216 z" @click="garderob" /> -->
+                                        <!-- 8 pc VIP <path class="part clr" @click="toilet" d="m 441.84487,150.50732 0.2277,15.59721 4.66778,-0.11385 0.22769,38.13915 -4.78162,-0.11385 -0.2277,18.21571 62.16112,-0.45539 v -16.96338 l -4.32623,0.11384 0.34154,-38.36684 h 3.64315 v -16.39414 z" /> -->
+
+
+
+
+                                    </svg>
+                                <img  src="{% static 'main/img/bronka150.png' %}" oncontextmenu="return false;" ondragstart="return false;" alt="" class="bronka">
+
+                                </div>
+                                {% else %}
+                                <h3 style="color:white">Войдите в аккаунт, чтобы получить возможность бронировать места в зале.</h3>
+                                {% endif %}
+
+
+
+  
+
+                        <!-- </div> -->
+
+                </div>
+                    </div>
+            </section>
+
+
+
+
+            <section class="artists-section section-padding" id="section_4">
+                <div class="container">
+                    <div class="row justify-content-center">
+
+                        <div class="col-12 text-center">
+                            <h2 class="mb-4">Наша команда</h2>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="{% static 'main/img/artists/Vanyatrue.jpg' %}" class="artists-image img-fluid">
+                                </div>
+
+                                <div class="artists-hover">
+                                    <p>
+                                        <strong>Имя:</strong>
+                                        <br>
+                                        <span style="color:black">Иван</span>
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        <strong>Должность:</strong>
+                                        <br>
+                                        <span style="color:black">Младший администратор</span>
+                                    </p>
+
+<!--                                    <p>-->
+<!--                                        <strong>Music:</strong>-->
+<!--                                        Pop, R&amp;B-->
+<!--                                    </p>-->
+
+<!--                                    <hr>-->
+
+<!--                                    <p class="mb-0">-->
+<!--                                        <strong>Youtube Channel:</strong>-->
+<!--                                        <a href="#">Madona Official</a>-->
+<!--                                    </p>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <div class="artists-thumb " style="padding-bottom: 0px;margin-bottom: 5px;">
+                                <div class="artists-image-wrap " >
+                                    <img src="{% static 'main/img/Roma1.jpg' %}"  class="artists-image img-fluid telhover imgRoma" >
+                                </div>
+
+                                <div class="artists-hover">
+                                    <p>
+                                        <strong>Имя:</strong>
+                                        <br>
+                                       <span style="color:black">Роман</span> 
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        <strong>Должность:</strong>
+                                        <br>
+                                       <span style="color:black">Главный администратор</span> 
+
+                                    </p>
+
+<!--                                    <p>-->
+<!--                                        <strong>Music:</strong>-->
+<!--                                        Country-->
+<!--                                    </p>-->
+
+<!--                                    <hr>-->
+
+<!--                                    <p class="mb-0">-->
+<!--                                        <strong>Youtube Channel:</strong>-->
+<!--                                        <a href="#">Rihana Official</a>-->
+<!--                                    </p>-->
+                                </div>
+                            </div>
+
+                            <div class="artists-thumb">
+                                <img src="{% static 'main/img/artists/Pashatrue.jpg' %}" class="artists-image img-fluid telhover">
+
+                                <div class="artists-hover hoverphoto">
+                                    <p>
+                                        <strong>Имя:</strong>
+                                        <br>
+                                        <span style="color:black">Павел</span>
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        <strong>Должность:</strong>
+                                        <br>
+                                        <span style="color:black">Младший администратор</span>
+                                    </p>
+
+<!--                                    <p>-->
+<!--                                        <strong>Music:</strong>-->
+<!--                                        Pop-->
+<!--                                    </p>-->
+
+<!--                                    <hr>-->
+
+<!--                                    <p class="mb-0">-->
+<!--                                        <strong>Youtube Channel:</strong>-->
+<!--                                        <a href="#">Bruno Official</a>-->
+<!--                                    </p>-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+    
+
+            <section class="pricing-section section-padding section-bg" id="section_5">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4">Прайс-лист</h2>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="pricing-thumb" style="margin:3vh;">
+                                <div class="d-flex" style="justify-content: center">
+                                    <img src="{% static 'main/img/priceto.PNG' %}" style="width:100%;border-radius: 25px;"  alt="">
+<!--                                    <div>-->
+<!--                                        <h3><small>Early Bird</small> $120</h3>-->
+
+<!--                                        <p>Including good things:</p>-->
+<!--                                    </div>-->
+
+<!--                                    <p class="pricing-tag ms-auto">Save up to <span>50%</span></h2></p>-->
+                                </div>
+
+<!--                                <ul class="pricing-list mt-3">-->
+<!--                                    <li class="pricing-list-item">platform for potential customers</li>-->
+
+<!--                                    <li class="pricing-list-item">digital experience</li>-->
+
+<!--                                    <li class="pricing-list-item">high-quality sound</li>-->
+
+<!--                                    <li class="pricing-list-item">standard content</li>-->
+<!--                                </ul>-->
+                                {% if not request.user.is_authenticated %}
+                                <a class="link-fx-1 color-contrast-higher mt-4" href="{% url 'auth' %}">
+                                    <span>Войти</span>
+                                    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="contact-section section-padding" id="section_6">
+                <div class="container">
+                    <div class="row">
+
+                       
+                           <div class="d-flex justify-content-center" style="margin-bottom:5vh;"><h2>Турниры</h2></div>
+                            <!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+  
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="border-radius: 30px;">
+        <ul class="hover-effect-scale" style="border-radius: 30px;">
+            <li style="border-radius: 30px;">
+                <img style="object-fit: cover ;" src="{% static 'main/img/CS2.png' %}" width="1200" height="675" alt="Los Angeles" class="d-block w-100" style="border-radius: 30px;">
+                <div>
+                <h5 style="color:white">Прими участие!</h5>
+               <br>
+                <span  style="cursor:pointer" href="" @click.stop="TourGame(0)">Участвовать</span>
+
+            </div>
+            
+            </li>
+          </ul>
+          <div class="carousel-caption">
+            <h4 style="color:white;">CS2</h4>
+            <h5 style="color:white;">Начало 27 декабря</h5>
+           <!-- <p>We had such a great time in LA!</p> -->
+          </div>
+      </div>
+      <div class="carousel-item">
+        <ul class="hover-effect-scale" style="border-radius: 30px;">
+            <li style="border-radius: 30px;">
+                <img style="object-fit: cover ;" src="{% static 'main/img/dota2(1).jpeg' %}" width="1200" height="675" alt="Los Angeles" class="d-block w-100" style="border-radius: 30px;">
+                <div>
+                    <h5 style="color:white">Прими участие!</h5>
+                    <br>
+                    <span style="cursor:pointer" href="" @click.stop="TourGame(1)">Участвовать</span>
+              </div>
+            
+            </li>
+          </ul>
+          <div class="carousel-caption">
+            <h4 style="color:white;">Dota 2</h4>
+            <h5 style="color:white;">Начало 29 декабря</h5>
+           <!-- <p>We had such a great time in LA!</p> -->
+          </div>
+      </div>
+      <div class="carousel-item">
+        <ul class="hover-effect-scale" style="border-radius: 30px;">
+            <li style="border-radius: 30px;">
+                <img style="object-fit: cover ;" src="{% static 'main/img/warface.jpg' %}" width="1200" height="675" alt="Los Angeles" class="d-block w-100" style="border-radius: 30px;">
+                <div>
+                    <h5 style="color:white">Прими участие!</h5>
+               <br>
+               <span style="cursor:pointer" href="" @click.stop="TourGame(2)">Участвовать</span>
+              </div>
+            
+            </li>
+          </ul>
+          <div class="carousel-caption">
+            <h4 style="color:white;">Warface</h4>
+            <h5 style="color:white;">Начало 25 декабря</h5>
+           <!-- <p>We had such a great time in LA!</p> -->
+          </div>
+      </div>
+    </div>
+  
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+
+
+
+  <!-- модальное окно для турниров   -->
+        <div v-show="TourModal==1">
+     <div class="modal  bd-example-modal-xl" id="exampleModal" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @click="TourModal=0" style="display:block;  position:fixed;
+      display:flex;
+      width:100%;
+      height:100%;
+      justify-content:center;
+      align-items:center;
+      background:rgba(0,0,0,.7);
+      overflow: hidden;
+      z-index:100;">
+    <div class="modal-dialog modal-xl" style="overflow-y:initial;" role="document" @click.stop>
+      <div class="modal-content" style="width:90vh;background:#f5f5f5;border:none">
+        <div class="modal-header" style="background:#f7943c" >
+          <h5 class="modal-title" style="color:white;"  id="exampleModalLabel">{% verbatim %}{{nameTournament}}{% endverbatim %}</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" @click="TourModal=0" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body" style="height:50vh;overflow-y: auto;">
+            <div class="form-group row">
+                <p class="text-center">
+                    {%verbatim%}{{commentTour}}{%endverbatim%}
+                </p>
+            </div>
+
+            <div class="form-group row">
+                <p class="text-center">
+                    Дата начала: <strong>{%verbatim%}{{dateStartTourDate}}{%endverbatim%}</strong>
+                    <br>
+                    Время проведения: <strong>{%verbatim%}{{dateStartTourTime}}{%endverbatim%}</strong>
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button v-if="isCheckToTournament==false" type="button" class="btn btn-success"   data-dismiss="modal" @click="RegisterTour">Участвовать</button>
+            <button v-if="isCheckToTournament==true" type="button" class="btn btn-danger"   data-dismiss="modal" @click="RegisterBackTour">Отменить участие</button>
+
+            <button  type="button" class="btn btn-danger" style="border:1px solid #f7943c;background:#f7943c"  data-dismiss="modal" @click="TourModal=0">Закрыть</button>
+          </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+
+<!--                            <h2 class="text-center mb-4">Interested? Let's talk</h2>-->
+
+                            <!-- <nav class="d-flex justify-content-center">
+                                <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactForm" type="button" role="tab" aria-controls="nav-ContactForm" aria-selected="false">
+                                        <h5>Предпочтения</h5>
+                                    </button>
+
+                                    <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap" type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
+                                        <h5>На карте</h5>
+                                    </button>
+                                </div>
+                            </nav> -->
+
+                            
+                    
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="contact-section section-padding" id="section_7">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+<!--                            <h2 class="text-center mb-4">Interested? Let's talk</h2>-->
+
+                            <nav class="d-flex justify-content-center">
+                                <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactForm" type="button" role="tab" aria-controls="nav-ContactForm" aria-selected="false">
+                                        <h5>Обратная связь</h5>
+                                    </button>
+
+                                    <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap" type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
+                                        <h5>На карте</h5>
+                                    </button>
+                                </div>
+                            </nav>
+
+                            <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel" aria-labelledby="nav-ContactForm-tab">
+                                    <form onsubmit="return mySubmitFunction(event)" class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post" role="form">
+                                       {% csrf_token %}
+                                        <div class="contact-form-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="text" name="contact-name" id="contact-name" class="form-control" v-model='nameEmail' placeholder="Имя" required>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="email" name="contact-email" v-model="emailEmail" id="contact-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email" required>
+                                                </div>
+                                            </div>
+
+                                            <input type="text" name="contact-company" id="contact-company" v-model="emailTema" class="form-control" placeholder="Тема" required>
+
+                                            <textarea name="contact-message" rows="3" class="form-control" v-model="emailMessage" id="contact-message" placeholder="Сообщение"></textarea>
+
+                                            <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                                <button type="submit" class="form-control" @click.stop="SendMessage">Отправить</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel" aria-labelledby="nav-ContactMap-tab">
+
+                                    <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8964.392958770917!2d49.09377631108807!3d55.826254118935445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x415952ac67e637f9%3A0x8b37c7d208705b19!2z0L_RgC3Rgi4g0KXRg9GB0LDQuNC90LAg0K_QvNCw0YjQtdCy0LAsIDM30JAsINCa0LDQt9Cw0L3RjCwg0KDQtdGB0L8uINCi0LDRgtCw0YDRgdGC0LDQvSwgNDIwMTI0!5e0!3m2!1sru!2sru!4v1696431175577!5m2!1sru!2sru" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
+
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container justify-content-between">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+
+                                <img src="{% static 'main/img/logo.svg' %}" alt="" style="width: 50vh">
+
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-telegram"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-whatsapp"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+<!--                    <div class="col-lg-6 col-12 mb-4 pb-2">-->
+<!--                        <h5 class="site-footer-title mb-3">Ссылки</h5>-->
+
+<!--                        <ul class="site-footer-links">-->
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Главная</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">О нас</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Тренера</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Онлайн зал</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Цены</a>-->
+<!--                            </li>-->
+
+<!--                            <li class="site-footer-link-item">-->
+<!--                                <a href="#" class="site-footer-link">Контакты</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Остались вопросы?</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +7(917)-673-94-81" class="site-footer-link">
+                                +7(917)-673-94-81
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:hello@company.com" class="site-footer-link">
+                                HalfCloud@mail.ru
+                            </a>
+                        </p>
+                    </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text"> © Half-Cloud</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        
+
+<script >
+{% if user.is_authenticated %}
+    var auth_user_id = {{request.user.id}};
+
+   
+{% endif %}
+function mySubmitFunction(e) {
+  e.preventDefault();
+  return false;
+}
+  
+const element = document.querySelector('form');
+element.addEventListener('submit', event => {
+  event.preventDefault();
+  // actual logic, e.g. validate the form
+  //console.log('Form submission cancelled.');
+});
+
+
+
+  //проверка на выходной для цен
+  let dayOfWeek = new Date().getDay();
+             let isWeekend = (dayOfWeek === 6) || (dayOfWeek  === 0); 
+                //---
+
+   // var qs = require('qs');
+   var nowyep = new Date();
+
+var dayep = ("0" + nowyep.getDate()).slice(-2);
+var monthyep = ("0" + (nowyep.getMonth() + 1)).slice(-2);
+
+var todayYep = nowyep.getFullYear()+"-"+(monthyep)+"-"+(dayep) ;
+    //console.log(auth_user_id);
+    const EventHandling  = {
+    data(){
+    return{
+        //mail
+        nameEmail:'',
+        emailEmail:'',
+        emailTema:'',
+        emailMessage:'',
+        //---
+        countBron:null,
+        countBronCheck:null,
+        checkUpload:false,
+        PriceShow:false,
+        totalAmount:0,
+        price:null,
+        calcHour:'',
+        TourModal:0,
+        nameTournament:'',
+        commentTour:'',
+        isCheckToTournament:null,
+        isCheckToCsGo:null,
+        isCheckDota:null,
+        isCheckWarface:null,
+        oborudToToast:'',
+        dateStartTourDate:'',
+        dateStartTourTime:'',
+        modalValue:0,
+        oborud:'',
+        value:'',
+        dateDinamic:null,
+        dateTomorrow:null, // Для проверки даты, чтобы обозначить верное время окончания бронирования
+        successUved:'',
+        dinamicId:'datePicker',   
+        keyOborud:null,       
+        successBron:'',
+        selectPerefNaush:'',
+        selectPerefMouse:'',
+        selectPerefKovrik:'',
+        selectPerefKeyboard:'',
+        currentDate:null,
+        mousePeref:[],
+        naushPeref:[],
+        kovrikPeref:[],
+        keyboardPeref:[],
+        timeUser:'',
+        timeMinuteUser:'',
+        activeCustom:0,
+        correntInterval:null,
+        objOborud:null,
+        dataReady:false,
+        bronirovanie:[],
+        timestamp:null,
+        arrayTime:[],
+        arrBron:[],
+        arrayMinute:[{time:'00',status:0},{time:'05',status:0},{time:'10',status:0},
+        {time:'15',status:0},{time:'20',status:0},{time:'25',status:0},
+        {time:'30',status:0},{time:'35',status:0},{time:'40',status:0},
+        {time:'45',status:0},{time:'50',status:0},{time:'55',status:0}],
+        timeInBron:[],
+        endBron:null,
+            }
+        },
+
+       async mounted() {
+        await this.objOborudIt();
+        await this.getOborud();
+        this.getPereferiya();
+
+       await setInterval(this.getOborud,900); //режим онлайн
+        },
+        methods:{
+        SendMessage(){
+            
+            if(this.emailEmail.indexOf("@") >= 0 && this.nameEmail.length>3 && this.emailEmail.length>5 && this.emailTema.length>3 && this.emailMessage.length>3){
+            axios.get('/message',{params:{name:this.nameEmail,email:this.emailEmail,tema:this.emailTema,message:this.emailMessage}}).then(response=>{
+                console.log(response.data);
+                if(response.data==true){
+                    alert('Сообщение отправлено!')
+                    this.nameEmail = '';
+                    this.emailEmail = '';
+                    this.emailMessage = '';
+                    this.emailTema = '';
+                    
+                } else{
+                    alert('Произошла ошибка, попробуйте снова')
+                }
+            })
+        } else {
+            // alert('Все поля, кроме почты, должны быть больше трех символов. Поле почты должно быть больше 5 символов')
+        }
+        },
+        getPereferiya(){
+            axios.get('/getPeref').then(response=>{
+                let resultPeref = JSON.parse(response.data);
+                resultPeref.forEach((peref)=>{
+                    if(peref.fields.type==0){
+                        this.mousePeref.push(peref);
+                    } 
+                    if(peref.fields.type==1){
+                        this.naushPeref.push(peref);
+                    }
+                    if(peref.fields.type==2){
+                        this.kovrikPeref.push(peref);
+                    }
+                    if(peref.fields.type==3){
+                        this.keyboardPeref.push(peref);
+                    }
+                })
+               // console.log(this.keyboardPeref,this.naushPeref,this.mousePeref,this.kovrikPeref)
+
+            })
+        },
+        BronirovanieOnline(){
+            //console.log(this.selectPerefKeyboard)
+          // console.log(this.dateTomorrow.tomorrow)
+          if(this.checkUpload==false){
+           let equipment = this.keyOborud;
+           let date = document.getElementById(this.dinamicId).value;
+           let time_end;
+        //   console.log(date)
+            //console.log(equipment);
+           let time_start = date + "T" +this.timeUser + this.timeMinuteUser+":00";
+           if(this.dateTomorrow!=null && this.dateTomorrow.tomorrow==false){
+                  time_end = date + "T" + this.endBron+":00";
+                 
+            } else {
+              //  console.log('ewgrw')       
+
+      let d = new Date(); 
+      d.setDate(d.getDate() + 1); 
+      let year = d.getFullYear() 
+      let month = String(d.getMonth() + 1) 
+      let day = String(d.getDate()) 
+      month = month.length == 1 ?  
+          month.padStart('2', '0') : month; 
+      day = day.length == 1 ?  
+          day.padStart('2', '0') : day; 
+       date = `${year}-${month}-${day}`; 
+       time_end = date + "T" + this.endBron+":00";   
+      //console.log(time_end)       
+            }
+           
+                //console.log(time_start,time_end);
+           let comment = time_start + '-' + time_end + '-' + equipment + '-' + auth_user_id 
+           let arrPereferiyi = '';
+           arrPereferiyi = this.selectPerefKeyboard + '-' + this.selectPerefKovrik + '-' + this.selectPerefMouse + '-' + this.selectPerefNaush;
+            
+          // console.log(arrPereferiyi)
+           axios.get('/saveBron',{params:{start:time_start,end:time_end,peref:arrPereferiyi,user:auth_user_id,equipment:equipment,comment:comment}}).then(response=>{
+             //  console.log('wqrg')
+            this.timeMinuteUser='';
+                this.time_start='';
+                this.endBron='';
+                this.modalValue = null;
+                this.oborud='';
+                //console.log(response.data)
+                if(response.data==true){
+                    //console.log('rfe')
+                    this.successUved ='success'; // success
+                    this.successBron = 'Вы успешно забронировали место ' + this.oborudToToast + '!Подробнее о ваших бронированиях можете посмотреть в личном кабинете'
+                } else {
+                    this.successBron = 'Ошибка!Попробуйте повторить снова'
+                }
+           })
+        } else {
+
+            this.activeCustom=0; //часы
+            this.countBron = this.countBronCheck;
+            this.checkUpload = false;
+            this.endBron = '';
+            this.timeMinuteUser = '';
+            this.timeUser = '';
+            alert('Обновление данных, пожалуйста выберите заново время бронирования');
+        }
+        
+        },
+        objOborudIt(){
+            axios.get('/getOborud').then(response=>{
+        this.objOborud = JSON.parse(response.data);
+        //console.log(this.objOborud);
+        }
+        );
+        },
+        getOborud(){
+            //console.log(this.keyOborud)
+           this.currentDate = document.getElementById(this.dinamicId).value // динамический айди с поля datePicker (дата брони)
+           // console.log(this.currentDate);
+    
+           if(!(this.oborud=='')){ //проверка, открыта ли какое либо модальное окно
+            this.bronirovanie = []; 
+            let tomorrow;
+            let afterTomorrow;
+            let DlyaProverkiIzmenenui = new Date(new Date(this.currentDate).setHours(0, 0, 0, 0) +86400000)
+            let DlyaBronPoslezavtra = new Date(new Date(this.currentDate).setHours(0, 0, 0, 0) +172800000)
+            let year= new Date().getFullYear();
+            let month = new Date().getMonth()+1;
+            let day = new Date().getDate()+1;
+            var poslezavtra=new Date(new Date().getTime()+172800000);
+            poslezavtra.setHours(0);
+            poslezavtra.setMinutes(0);
+            poslezavtra.setSeconds(0);
+            //console.log(poslezavtra);
+         
+
+            
+            if(day.toString().length<2){
+            tomorrow = new Date(`${year}-${month}-0${day}T00:00:00`);
+            } else {
+                tomorrow = new Date(`${year}-${month}-${day}T00:00:00`);
+            }
+            tomorrow = new Date(new Date(this.currentDate).setHours(0, 0, 0, 0) +86400000)
+            //console.log(tomorrow);
+           let currentYear = new Date(this.currentDate).getFullYear();
+           let currentMonth = new Date(this.currentDate).getMonth()+1;
+           let currentDay = new Date(this.currentDate).getDate();
+           let currentDayTomorrow  =  new Date(this.currentDate).getDate()+1;
+           
+
+          let currentToday;
+          let currentTodayTomorrow;
+          if(currentDay.toString().length<2){ //важно
+             currentToday = new Date(this.currentDate).setHours(0, 0, 0, 0);
+            } else {
+                currentToday = new Date(this.currentDate).setHours(0, 0, 0, 0);
+            }     
+          if(currentDayTomorrow.toString().length<2){ //важно
+            currentTodayTomorrow = new Date(new Date(this.currentDate).setHours(0, 0, 0, 0) +86400000)
+            } else {
+                currentTodayTomorrow = new Date(new Date(this.currentDate).setHours(0, 0, 0, 0) +86400000)
+
+            }      
+        //    
+
+
+          
+
+                            let arr = [];
+                            let arrTomorrow = [];
+                            let arrObrabotkaDayToBefore = [];
+                            let arrDinamicTodayToTomorrow = [];
+                            let count = 0;
+                            let vchera = new Date(new Date(this.currentDate)-86400000)
+                           // console.log(vchera)
+                            //console.log(tomorrow)
+                        //    console.log(DlyaBronPoslezavtra)
+            axios.get('/getBron',{params:{number:this.value.number}}).then(response=>{
+                let res = JSON.parse(response.data); //все брони по текущему оборудованию
+              //  console.log(currentDay,currentToday)
+                //console.log(poslezavtra)
+                res.forEach((brn)=>{
+                    if(new Date()<currentToday && new Date(brn.fields.time_start)>=vchera && new Date(brn.fields.end_date)<DlyaBronPoslezavtra){
+                        //здесь реализация брони с даты начала до следующего дня
+                        if(new Date(brn.fields.end_date)>=DlyaProverkiIzmenenui && new Date(brn.fields.time_start)<DlyaProverkiIzmenenui){
+                        arrDinamicTodayToTomorrow.push({
+                            dateStart:brn.fields.time_start.split('T')[0],
+                            dateEnd:brn.fields.end_date.split('T')[0],
+                            start:brn.fields.time_start.split('T')[1],
+                            end:brn.fields.end_date.split('T')[1],
+                            tomorrow:true
+                        })
+                    } 
+                    if(new Date(brn.fields.end_date)>=DlyaProverkiIzmenenui && new Date(brn.fields.time_start)>DlyaProverkiIzmenenui) {
+                        arrDinamicTodayToTomorrow.push({
+                            dateStart:brn.fields.time_start.split('T')[0],
+                            dateEnd:brn.fields.end_date.split('T')[0],
+                            start:brn.fields.time_start.split('T')[1],
+                            end:brn.fields.end_date.split('T')[1],
+                            tomorrow:false
+                        })
+                    }
+                    
+                    }
+                    if(new Date(brn.fields.time_start)>= currentToday && new Date(brn.fields.time_start)<= DlyaProverkiIzmenenui){
+                        count++;
+                    }
+                    if(new Date(brn.fields.end_date)>=tomorrow && new Date(brn.fields.end_date)<poslezavtra){ //получить брони от завтра до послезавтра
+                       let endDateTomorrow = brn.fields.end_date.split('T')[1];
+                        arrTomorrow.push({
+                            start:brn.fields.time_start.split('T')[1],
+                            end:endDateTomorrow,
+                            tomorrow:true
+                        });
+                    }
+
+                    if(new Date(brn.fields.time_start).getDate() < new Date(brn.fields.end_date).getDate() && new Date(brn.fields.end_date)<poslezavtra){
+                          
+                          arrObrabotkaDayToBefore.push({
+                          start:brn.fields.time_start.split('T')[1],
+                          end:brn.fields.end_date.split('T')[1]
+                      });
+                      if(this.bronirovanie.length!==0){
+                          if(this.bronirovanie.find(item=>item.pk==brn.pk)==undefined){
+
+                          this.bronirovanie.push(brn);
+                      
+                          }
+                      } else {
+                          
+                          this.bronirovanie.push(brn);
+                      }
+                      }
+                   // console.log(brn)
+                        if(currentToday <= new Date()){ //проверка на сегодняшний день
+                    
+
+                       
+                        if(new Date(brn.fields.end_date)>new Date() && new Date(brn.fields.end_date)<tomorrow){
+                         //  console.log(brn.fields.end_date)
+                        brn.fields.end_date = brn.fields.end_date.split('T')[1];
+                        arr.push({
+                            start:brn.fields.time_start.split('T')[1],
+                            end:brn.fields.end_date
+                        });
+                        
+                        
+                        
+                            if(this.bronirovanie.length!==0){
+                            if(this.bronirovanie.find(item=>item.pk==brn.pk)==undefined){
+
+                            this.bronirovanie.push(brn);
+                        
+                            }
+                        } else {
+                            
+                            this.bronirovanie.push(brn);
+                        }
+                        // let last = this.bronirovanie[this.bronirovanie.length-1];
+                        // this.bronirovanie = [];
+                        // last.fields.end_date =  last.fields.end_date.split(':')[0] + ':' +  last.fields.end_date.split(':')[1];
+                        // this.bronirovanie.push(last);
+                        }
+                    } else {//важно
+                        
+
+                        if(new Date(brn.fields.end_date)>currentToday && new Date(brn.fields.end_date)<currentTodayTomorrow){
+                         //  console.log(brn.fields.end_date)
+                        brn.fields.end_date = brn.fields.end_date.split('T')[1];
+                        arr.push({
+                            start:brn.fields.time_start.split('T')[1],
+                            end:brn.fields.end_date
+                        });
+                       // console.log(arr);
+                     //   console.log(arr);
+                        
+                        
+                            if(this.bronirovanie.length!==0){
+                            if(this.bronirovanie.find(item=>item.pk==brn.pk)==undefined){
+
+                            this.bronirovanie.push(brn);
+                        
+                            }
+                        } else {
+                            
+                            this.bronirovanie.push(brn);
+                        }
+                        // let last = this.bronirovanie[this.bronirovanie.length-1];
+                        // this.bronirovanie = [];
+                        // last.fields.end_date =  last.fields.end_date.split(':')[0] + ':' +  last.fields.end_date.split(':')[1];
+                        // this.bronirovanie.push(last);
+                        }
+
+
+                    }
+                    
+                }) // конец основного форича
+
+                if(this.countBron===null && this.activeCustom==3){
+                    this.countBron = count;
+                } 
+               
+                    if(count>this.countBron && this.activeCustom==3){
+                        this.checkUpload = true;
+                        this.countBronCheck = count;
+                    } else { this.countBron = count}
+                    if(count==this.countBron && this.activeCustom==3) {
+                        this.checkUpload = false;
+                    }
+              //  console.log(count)
+                
+               // console.log(count)
+              //  console.log(arrTomorrow)
+               // console.log(arr)
+             //  this.bronirovanie = JSON.parse(response.data);
+               //console.log(arr)
+               //console.log(currentToday)
+               
+               if(currentToday <= new Date()){
+               this.arrayTime=[  {time:'00',status:0},{time:'01',status:0},{time:'02',status:0},{time:'03',status:0},
+        {time:'04',status:0},{time:'05',status:0},{time:'06',status:0},{time:'07',status:0},
+        {time:'08',status:0},{time:'09',status:0},{time:'10',status:0},{time:'11',status:0},
+        {time:'12',status:0},{time:'13',status:0},{time:'14',status:0},{time:'15',status:0},
+        {time:'16',status:0},{time:'17',status:0},{time:'18',status:0},{time:'19',status:0},
+        {time:'20',status:0},{time:'21',status:0},{time:'22',status:0},{time:'23',status:0}];
+
+                arrObrabotkaDayToBefore.forEach((el)=>{
+                let str = el.start.split(':')[0];
+              
+                let fil = this.arrayTime.map((item)=>{
+                    if(item.time>=str){
+                        item.status = 1;
+                    }
+                });
+                })
+
+               arr.forEach((el)=>{
+                let str = el.start.split(':')[0];
+                let end = el.end.split(':')[0];
+                let fil = this.arrayTime.map((item)=>{
+                    if(item.time>=str && item.time<=end){
+                        item.status = 1;
+                    }
+                });
+                
+               })
+             //  console.log(this.timeUser)
+               let timeUser = this.timeUser[0] + this.timeUser[1];
+                this.timeInBron = [];
+                let check = false; //если после выбранного времени есть что то забронированное (флаг для добавления времени до завтра)
+                for (let i=0;i<this.arrayTime.length;i++){
+                    if(new Date().getHours()>this.arrayTime[i].time){
+                        this.arrayTime[i].status = 1;
+                    }
+                   if(timeUser==this.arrayTime[i].time && this.timeMinuteUser!==''){
+                    for (let j=i;j<this.arrayTime.length;j++){
+                        if(this.arrayTime[j].status!==1){
+                            let result = {time:this.arrayTime[j].time + ':' + this.timeMinuteUser,tomorrow:false};
+
+                            this.timeInBron.push(result);
+                       
+                        } else {
+                            check = true; 
+                            break;}
+                    }
+                   }
+                    
+                }
+            
+                this.timeInBron.shift();
+                //---
+                //для брони с сегодня по завтра
+
+                let arrTime=[  {time:'00',status:0},{time:'01',status:0},{time:'02',status:0},{time:'03',status:0},
+        {time:'04',status:0},{time:'05',status:0},{time:'06',status:0},{time:'07',status:0},
+        {time:'08',status:0},{time:'09',status:0},{time:'10',status:0},{time:'11',status:0},
+        {time:'12',status:0},{time:'13',status:0},{time:'14',status:0},{time:'15',status:0},
+        {time:'16',status:0},{time:'17',status:0},{time:'18',status:0},{time:'19',status:0},
+        {time:'20',status:0},{time:'21',status:0},{time:'22',status:0},{time:'23',status:0}];
+
+        
+
+               arrTomorrow.forEach((el)=>{
+                let str = el.start.split(':')[0];
+                let end = el.end.split(':')[0];
+                let fil = arrTime.map((item)=>{
+                    if(item.time>=str && item.time<=end){
+                        item.status = 1;
+                    }
+                });
+
+                
+ 
+                
+               });
+               if(check==false){
+               for (let i=0;i<arrTime.length;i++){
+                    
+                    if(arrTime[i].status!==1){
+                            let result = {time:arrTime[i].time + ':' + this.timeMinuteUser,tomorrow:true};
+
+                            this.timeInBron.push(result);
+                            let next = arrTime[i+1];
+                            if(next!==undefined){
+                                if(next.status!==1){
+                             //       console.log('cxtn')
+                           // let res_next = next.time + ':' + this.timeMinuteUser;
+                           // this.timeInBron.push(result);
+                           // this.timeInBron.push(res_next);
+                             // let result = this.arrayTime[j].time + ':' + this.timeMinuteUser;
+
+                        //    this.timeInBron.push(result);
+                            } else {
+                                break;
+                            }
+                        } else{ 
+                      
+
+                        }
+                      
+                  
+                   } else {
+                    break;
+                   }
+                    
+                }
+            }
+            
+               if(this.timeInBron.length>24){
+               this.timeInBron = this.timeInBron.slice(0,24)
+               }
+           
+            } else {  //здесь реализовать currentToday(динам выбор даты) до DlyaBronPoslezavtra(от выбранной даты некст день)
+                //console.log(arrDinamicTodayToTomorrow)
+                this.arrayTime=[  {time:'00',status:0},{time:'01',status:0},{time:'02',status:0},{time:'03',status:0},
+        {time:'04',status:0},{time:'05',status:0},{time:'06',status:0},{time:'07',status:0},
+        {time:'08',status:0},{time:'09',status:0},{time:'10',status:0},{time:'11',status:0},
+        {time:'12',status:0},{time:'13',status:0},{time:'14',status:0},{time:'15',status:0},
+        {time:'16',status:0},{time:'17',status:0},{time:'18',status:0},{time:'19',status:0},
+        {time:'20',status:0},{time:'21',status:0},{time:'22',status:0},{time:'23',status:0}];
+        let dateCheck = document.getElementById(this.dinamicId).value;
+             if(new Date(dateCheck) < poslezavtra){ //фикс бага
+        arrObrabotkaDayToBefore.forEach((el)=>{
+                let end = el.end.split(':')[0];
+                
+                let fil = this.arrayTime.map((item)=>{
+                    if(item.time<=end){
+                      //  console.log('fwrf')
+                        item.status = 1;
+                    }
+                });
+                })
+            }
+        //     console.log(arrDinamicTodayToTomorrow)
+        //     arrDinamicTodayToTomorrow.forEach((el)=>{
+        //     if(el.tomorrow==true){
+             
+                      
+        //             if(new Date(el.dateStart).setHours( 0,0,0,0 ) ==currentToday.setHours( 0,0,0,0 )){
+                     
+        //             let start = el.start.split(':')[0];
+        //             let fil = this.arrayTime.map((item)=>{
+        //             if(item.time>=start){
+        //               //  console.log('fwrf')
+        //                 item.status = 1;
+        //             }
+        //         });
+        //             }
+        //             if(new Date(el.dateEnd)==new Date(dateCheck)){
+        //                 let end = el.end.split(':')[0];
+        //             let fil = this.arrayTime.map((item)=>{
+        //             if(item.time<=end){
+        //                 item.status = 1;
+        //             }
+        //         });
+        //             }
+        //     }
+        // })
+           
+            
+
+               arr.forEach((el)=>{
+                let str = el.start.split(':')[0];
+                let end = el.end.split(':')[0];
+                let fil = this.arrayTime.map((item)=>{
+                    if(item.time>=str && item.time<=end){
+                        item.status = 1;
+                    }
+                });
+                
+               })
+               
+               let timeUser = this.timeUser[0] + this.timeUser[1];
+                this.timeInBron = [];
+                let check = false;
+                for (let i=0;i<this.arrayTime.length;i++){
+                   
+                   if(timeUser==this.arrayTime[i].time && this.timeMinuteUser!==''){
+                    for (let j=i;j<this.arrayTime.length;j++){
+                        if(this.arrayTime[j].status!==1){
+                            
+                            
+                          let result = {time:this.arrayTime[j].time + ':' + this.timeMinuteUser,tomorrow:false};
+
+                            this.timeInBron.push(result);
+                            let next = this.arrayTime[j+1];
+                            if(next!==undefined){
+                                if(next.status!==1){
+                           
+
+                     
+                            } else {
+                                check = true; 
+                                break;
+                               
+
+                            }
+                        } else{ 
+                      
+
+                        }
+
+                        //     let next = this.arrayTime[j+1];
+                        //     if(next!==undefined){
+                        //         if(next.status!==1){
+                        //     let result = this.arrayTime[j].time + ':' + this.timeMinuteUser;
+                        //     this.timeInBron.push(result);
+                        //     } else {
+                        //         alert('Выберите другое место в зале или другое время');
+                        //         this.modalValue=0;
+                        //         this.oborud='';
+
+                        //     }
+                        // } else{ 
+                        //     let end = '23' + ':' + this.timeMinuteUser
+                        //     this.timeInBron.push(end);
+
+                        // }
+                        }
+                    }
+                   }
+                    
+                }
+                this.timeInBron.shift();
+               // console.log(this.timeInBron);   
+                
+               //реализация брони до завтра, если бронь не на текущую дату
+        //        let arrTime=[  {time:'00',status:0},{time:'01',status:0},{time:'02',status:0},{time:'03',status:0},
+        // {time:'04',status:0},{time:'05',status:0},{time:'06',status:0},{time:'07',status:0},
+        // {time:'08',status:0},{time:'09',status:0},{time:'10',status:0},{time:'11',status:0},
+        // {time:'12',status:0},{time:'13',status:0},{time:'14',status:0},{time:'15',status:0},
+        // {time:'16',status:0},{time:'17',status:0},{time:'18',status:0},{time:'19',status:0},
+        // {time:'20',status:0},{time:'21',status:0},{time:'22',status:0},{time:'23',status:0}];
+
+        
+
+        // arrDinamicTodayToTomorrow.forEach((el)=>{
+        //        if(el.tomorrow==false){
+
+                
+        //         let str = el.start.split(':')[0];
+        //         let end = el.end.split(':')[0];
+        //         let fil = arrTime.map((item)=>{
+        //             if(item.time>=str && item.time<=end){
+        //                 item.status = 1;
+        //             }
+        //         });
+
+            
+        //     }
+        // });
+
+
+               
+        //        if(check==false){
+        //        for (let i=0;i<arrTime.length;i++){
+                    
+        //             if(arrTime[i].status!==1){
+        //                     let result = {time:arrTime[i].time + ':' + this.timeMinuteUser,tomorrow:true};
+
+        //                     this.timeInBron.push(result);
+        //                     let next = arrTime[i+1];
+        //                     if(next!==undefined){
+        //                         if(next.status!==1){
+        //                      //       console.log('cxtn')
+        //                    // let res_next = next.time + ':' + this.timeMinuteUser;
+        //                    // this.timeInBron.push(result);
+        //                    // this.timeInBron.push(res_next);
+        //                      // let result = this.arrayTime[j].time + ':' + this.timeMinuteUser;
+
+        //                 //    this.timeInBron.push(result);
+        //                     } else {
+        //                         break;
+        //                     }
+        //                 } else{ 
+                      
+
+        //                 }
+                      
+                  
+        //            } else {
+        //             break;
+        //            }
+                    
+        //         }
+        //     }
+                
+            }   
+            
+            
+          
+            
+            }) 
+          
+            
+        } else { //окрас кнопок
+            axios.get('/getBronAll').then(response=>{
+               let res = JSON.parse(response.data);
+               res.forEach((brn)=>{
+            if(new Date(brn.fields.time_start)<=new Date() && new Date(brn.fields.end_date)>new Date()){
+                       this.objOborud.map((el)=>{
+                    
+                            if(el.fields.status!==1){
+                            if(el.pk==brn.fields.equipment){
+                                el.fields.status=1;
+                          }
+                        }
+                        })
+                   } else if(new Date(brn.fields.end_date)<new Date()) {
+                    if(this.objOborud!==undefined && this.objOborud!==null){
+                    this.objOborud.map((el)=>{
+                        if(el.pk==brn.fields.equipment ){
+                            //console.log(el.pk)
+                            if(el.fields.status==1){
+                                el.fields.status=0;
+                          }
+                        }
+                        })
+                    }
+                }
+               });
+          
+                }); 
+                       
+        }
+       
+
+        
+
+        },
+        TimeToBron(time){
+            this.PriceShow = false;
+            this.arrayMinute=[ //возможно баги
+        {time:'00',status:0},{time:'05',status:0},{time:'10',status:0},
+        {time:'15',status:0},{time:'20',status:0},{time:'25',status:0},
+        {time:'30',status:0},{time:'35',status:0},{time:'40',status:0},
+        {time:'45',status:0},{time:'50',status:0},{time:'55',status:0}
+    ];
+            this.endBron=null;
+            if(time.status==0){
+            this.timeUser = time.time.split(':')[0]+":";
+            this.activeCustom = 1;
+            let date = new Date;
+
+          //  let seconds = date.getSeconds();
+            let minutes = date.getMinutes();
+            let hour = date.getHours();
+            let day = date.getDate();
+            let currentDateDay = new Date(this.currentDate).getDate(); 
+            let string_hour = String(hour);
+            if(string_hour.length<2){
+                string_hour = "0" + string_hour; 
+            }
+           // console.log(String(hour));
+            if(time.time==string_hour && day==currentDateDay){
+                //console.log('n')
+            
+            
+               this.arrayMinute.forEach((min)=>{
+                if(minutes>min.time){
+                    min.status=1;//время редакт
+                }
+               })  
+            }
+
+
+            }
+            else {
+                alert('Выберите свободное время')
+            }
+            
+                },
+        TimeToBron1(minute){
+            this.PriceShow = false;
+            if(this.timeUser!=''){
+            if(minute.status!==1){
+            this.endBron=null;
+            this.timeMinuteUser = minute.time;
+            this.activeCustom = 2;
+            } else {
+                alert('Выберите доступное время')
+            }
+        } else {
+            alert('Сначала выберите час')
+        }
+        },
+        TimeToBron2(bron){
+            this.PriceShow = true;
+            this.totalAmount = 0;
+            //console.log(this.timeUser,bron.time);
+            let start = this.timeUser.split(':')[0];
+            console.log(start)
+            let end = bron.time.split(':')[0];
+            let getDate = (string) => new Date(0, 0,0, string.split(':')[0]);
+            let different = (getDate(end) - getDate(start));
+            let hours = Math.floor((different % 86400000) / 3600000);
+           // console.log(hours)
+            if(hours>0){
+                this.calcHour = hours
+                //сколько часов занял клиент именно в этот день
+            } else if(hours<0){
+                hours = 24 + Number(hours);
+                this.calcHour = hours;
+            } else {
+                this.calcHour = 24;
+            }
+            if(this.calcHour==1){
+                this.totalAmount = this.price
+            } else if(this.calcHour==3){ //3 часа скидка
+                if(this.keyOborud>=1 && this.keyOborud<=10){
+                    //сюда
+                    if(isWeekend){
+                        this.totalAmount = 190
+                    } else {this.totalAmount=170}
+                }
+                if(this.keyOborud>=13 && this.keyOborud<=22){
+                    if(isWeekend){
+                        this.totalAmount = 240;
+                    } else {this.totalAmount=220}
+                }
+                if(this.keyOborud==11){
+                    if(isWeekend){
+                        this.totalAmount = 600;
+                    } else {this.totalAmount=500}
+                }
+                if(this.keyOborud==12){
+                    if(isWeekend){
+                        this.totalAmount = 700;
+                    } else {this.totalAmount=600}
+                }
+            } else if(this.calcHour==5){ //5 часов скидка
+                if(this.keyOborud>=1 && this.keyOborud<=10){
+                    //сюда
+                    if(isWeekend){
+                        this.totalAmount = 320
+                    } else {this.totalAmount=280}
+                }
+                if(this.keyOborud>=13 && this.keyOborud<=22){
+                    if(isWeekend){
+                        this.totalAmount = 400;
+                    } else {this.totalAmount=360}
+                }
+                if(this.keyOborud==11){
+                    if(isWeekend){
+                        this.totalAmount = 800;
+                    } else {this.totalAmount=650}
+                }
+                if(this.keyOborud==12){
+                    if(isWeekend){
+                        this.totalAmount = 950;
+                    } else {this.totalAmount=800}
+                }
+            } else if(this.calcHour==10 && start=='22'){ //пакет ночь
+                if(this.keyOborud>=1 && this.keyOborud<=10){
+                  
+                    if(isWeekend){
+                        this.totalAmount = 400
+                    } else {this.totalAmount=300}
+                }
+                if(this.keyOborud>=13 && this.keyOborud<=22){
+                    if(isWeekend){
+                        this.totalAmount = 600;
+                    } else {this.totalAmount=500}
+                }
+                if(this.keyOborud==11){
+                    if(isWeekend){
+                        this.totalAmount = 1000;
+                    } else {this.totalAmount=800}
+                }
+                if(this.keyOborud==12){
+                    if(isWeekend){
+                        this.totalAmount = 1150;
+                    } else {this.totalAmount=950}
+                }
+            } else if(this.calcHour==6 && start=='08'){ //пакет утро
+                if(this.keyOborud>=1 && this.keyOborud<=10){
+                  
+                  if(isWeekend){
+                      this.totalAmount = 350
+                  } else {this.totalAmount=300}
+              }
+              if(this.keyOborud>=13 && this.keyOborud<=22){
+                  if(isWeekend){
+                      this.totalAmount = 400;
+                  } else {this.totalAmount=350}
+              }
+              if(this.keyOborud==11){
+                this.totalAmount = this.calcHour * this.price;
+              }
+              if(this.keyOborud==12){
+                this.totalAmount = this.calcHour * this.price;
+              }
+            } else if(this.calcHour==7 && start=='14'){ //пакет день
+                if(this.keyOborud>=1 && this.keyOborud<=10){
+                  
+                  if(isWeekend){
+                      this.totalAmount = 400
+                  } else {this.totalAmount=350}
+              }
+              if(this.keyOborud>=13 && this.keyOborud<=22){
+                  if(isWeekend){
+                      this.totalAmount = 550;
+                  } else {this.totalAmount=500}
+              }
+              if(this.keyOborud==11){
+                this.totalAmount = this.calcHour * this.price;
+              }
+              if(this.keyOborud==12){
+                this.totalAmount = this.calcHour * this.price;
+              }
+            } else if(this.calcHour==24){ //пакет сутки
+                if(this.keyOborud>=1 && this.keyOborud<=10){
+                  
+                  if(isWeekend){
+                      this.totalAmount = 1000
+                  } else {this.totalAmount=900}
+              }
+              if(this.keyOborud>=13 && this.keyOborud<=22){
+                  if(isWeekend){
+                      this.totalAmount = 1300;
+                  } else {this.totalAmount=1200}
+              }
+              if(this.keyOborud==11){
+                this.totalAmount = this.calcHour * this.price;
+              }
+              if(this.keyOborud==12){
+                this.totalAmount = this.calcHour * this.price;
+              }
+            } else {
+                this.totalAmount = this.calcHour * this.price;
+            }
+
+            console.log(this.calcHour)
+            console.log(this.price)
+           
+            this.dateTomorrow = bron;
+           // console.log(bron);
+            this.endBron=null;
+            this.endBron = bron.time;
+         //   console.log(this.endBron)
+            this.activeCustom = 3;
+
+        },
+        clearAndClose(){
+            this.modalValue=0;
+            this.oborud='';
+        },
+
+//турниры
+        TourGame(game){
+            this.TourModal = 1;
+           
+            if(game==0){ //cs2
+               
+            axios.get('/getTourCsGo',{params:{number:1}}).then(response => {
+                let res =JSON.parse(response.data);
+               // console.log(res)
+                let date = res[0].fields.dateStartTour;
+                let dateDate = date.split('T')[0];
+                let dateTime = date.split('T')[1]
+               // console.log(date);
+
+                this.nameTournament = res[0].fields.nameTournament;
+                this.dateStartTourDate = dateDate;
+                this.dateStartTourTime = dateTime;
+                this.commentTour = res[0].fields.comment;
+                
+                axios.get('/checkToRegister',{params:{userCheck:auth_user_id,nameTour:this.nameTournament}}).then(response =>{
+                let resCheck = JSON.parse(response.data);
+               // console.log(resCheck)
+                if(resCheck.length==0){ //проверка на участие в турнире
+                    this.isCheckToTournament = false;
+                    this.isCheckToCsGo = false;
+                } else {
+                    this.isCheckToCsGo = true;
+                    this.isCheckToTournament = true;
+                }
+                //console.log(this.isCheckToTournament)
+            })
+
+            })
+        }
+        if(game==1){
+            axios.get('/getTourCsGo',{params:{number:2}}).then(response => {
+                let res =JSON.parse(response.data);
+              //  console.log(res)
+                let date = res[0].fields.dateStartTour;
+                let dateDate = date.split('T')[0];
+                let dateTime = date.split('T')[1]
+               // console.log(date);
+
+                this.nameTournament = res[0].fields.nameTournament;
+                this.dateStartTourDate = dateDate;
+                this.dateStartTourTime = dateTime;
+                this.commentTour = res[0].fields.comment;
+                
+                axios.get('/checkToRegister',{params:{userCheck:auth_user_id,nameTour:this.nameTournament}}).then(response =>{
+                let resCheck = JSON.parse(response.data);
+               // console.log(resCheck)
+                if(resCheck.length==0){ //проверка на участие в турнире
+                    this.isCheckToTournament = false;
+                    this.isCheckDota = false;
+
+                } else {
+                    this.isCheckDota = true;
+                    this.isCheckToTournament = true;
+                }
+                //console.log(this.isCheckToTournament)
+            })
+
+            })
+        }
+        if(game==2){
+            axios.get('/getTourCsGo',{params:{number:3}}).then(response => {
+                let res =JSON.parse(response.data);
+               // console.log(res)
+                let date = res[0].fields.dateStartTour;
+                let dateDate = date.split('T')[0];
+                let dateTime = date.split('T')[1]
+               // console.log(date);
+
+                this.nameTournament = res[0].fields.nameTournament;
+                this.dateStartTourDate = dateDate;
+                this.dateStartTourTime = dateTime;
+                this.commentTour = res[0].fields.comment;
+
+                axios.get('/checkToRegister',{params:{userCheck:auth_user_id,nameTour:this.nameTournament}}).then(response =>{
+                let resCheck = JSON.parse(response.data);
+               // console.log(resCheck)
+                if(resCheck.length==0){ //проверка на участие в турнире
+                    this.isCheckToTournament = false;
+                    this.isCheckWarface = false;
+                } else {
+                    this.isCheckWarface = true;
+                    this.isCheckToTournament = true;
+                }
+                //console.log(this.isCheckToTournament)
+            })
+
+            })
+        }
+       
+       
+
+        },
+       
+        RegisterTour(){
+           // let date = new Date();
+            
+            axios.get('/RegisterTour',{params:{nameTour:this.nameTournament,authUserId:auth_user_id}}).then(response => {
+                this.TourModal = 2;
+                
+            })
+        },
+        RegisterBackTour(){
+            axios.get('/RegisterBackTour',{params:{nameTour:this.nameTournament,authUserId:auth_user_id}}).then(response => {
+                 this.TourModal = 0;
+                
+            })
+        },
+//---
+        playstation(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                       this.price = 250;
+                        } else {
+                        this.price = 200;
+                      }
+            this.successUved = '';
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+            this.modalValue=1;
+            this.correntInterval = 11;
+            this.oborudToToast = 'PlayStation(standart)';
+            this.oborud = 'PlayStation(standart)';
+            axios.get('/data',{params:{number:11}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.dinamicId = 'datePicker1';
+            this.currentDate = document.getElementById('datePicker1').value = todayYep;
+
+
+            }
+            );
+            
+         
+
+        },
+        playstationVip(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                this.price = 300;
+                   } else {
+                this.price = 250;
+                    }
+            this.successUved = '';
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.dinamicId = 'datePicker2';
+        this.oborudToToast = 'PlayStation(Vip)';
+        this.oborud = 'PlayStation(Vip)';
+        axios.get('/data',{params:{number:12}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker2').value = todayYep;
+           // console.log(this.currentDate)
+            
+            }
+            )
+        },
+        pcStandart1(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №1(standart)';
+        this.oborudToToast = 'Компьютер №1(standart)';
+        axios.get('/data',{params:{number:1}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+            //console.log(this.value);
+                this.dinamicId = 'datePicker';
+
+            this.currentDate = document.getElementById('datePicker').value = todayYep;
+           // console.log(this.selectPeref);
+
+            }
+            )
+        },
+        pcStandart2(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №2(standart)';
+        this.oborudToToast = 'Компьютер №2(standart)';
+
+        axios.get('/data',{params:{number:2}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart3(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №3(standart)';
+        this.oborudToToast = 'Компьютер №3(standart)';
+
+        axios.get('/data',{params:{number:3}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+          //  console.log(this.value);
+            this.currentDate = document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+
+            }
+            )
+        },
+        pcStandart4(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №4(standart)';
+        this.oborudToToast = 'Компьютер №4(standart)';
+
+        axios.get('/data',{params:{number:4}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate =    document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart5(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №5(standart)';
+        this.oborudToToast = 'Компьютер №5(standart)';
+
+        axios.get('/data',{params:{number:5}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+          //  console.log(this.value);
+            this.currentDate =   document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart6(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №6(standart)';
+        this.oborudToToast = 'Компьютер №6(standart)';
+
+        axios.get('/data',{params:{number:6}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart7(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №7(standart)';
+        this.oborudToToast = 'Компьютер №7(standart)';
+
+        axios.get('/data',{params:{number:7}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+         //   console.log(this.value);
+            this.currentDate =  document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart8(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №8(standart)';
+        this.oborudToToast = 'Компьютер №8(standart)';
+
+        axios.get('/data',{params:{number:8}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+           // console.log(this.value);
+            this.currentDate =  document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart9(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №9(standart)';
+        this.oborudToToast = 'Компьютер №9(standart)';
+
+        axios.get('/data',{params:{number:9}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+          //  console.log(this.value);
+            this.currentDate =  document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        pcStandart10(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №10(standart)';
+        this.oborudToToast = 'Компьютер №10(standart)';
+
+        axios.get('/data',{params:{number:10}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker').value = todayYep;
+            this.dinamicId = 'datePicker';
+
+            }
+            )
+        },
+        standartZone(){
+            
+            this.PriceShow = false;
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Зона(Standart)'
+        this.value = "standartzone"
+      //  this.currentDate = document.getElementById('datePicker').valueAsDate = new Date();
+
+        },
+        pcVip1(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborudToToast = 'Компьютер №1(Vip)';
+        this.oborud = 'Компьютер №1(Vip)';
+        axios.get('/data',{params:{number:13}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.value = test[0].fields
+            this.keyOborud = test[0].pk;
+          //  console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+        },
+        pcVip2(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №2(Vip)';
+        this.oborudToToast = 'Компьютер №2(Vip)';
+        axios.get('/data',{params:{number:14}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+            //console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+        },
+        pcVip3(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №3(Vip)';
+        this.oborudToToast = 'Компьютер №3(Vip)';
+        axios.get('/data',{params:{number:15}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip4(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №4(Vip)';
+        this.oborudToToast = 'Компьютер №4(Vip)';
+        axios.get('/data',{params:{number:16}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+          //  console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip5(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №5(Vip)';
+        this.oborudToToast = 'Компьютер №5(Vip)';
+        axios.get('/data',{params:{number:17}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+          //  console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip6(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №6(Vip)';
+        this.oborudToToast = 'Компьютер №6(Vip)';
+        axios.get('/data',{params:{number:18}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip7(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №7(Vip)';
+        this.oborudToToast = 'Компьютер №7(Vip)';
+        axios.get('/data',{params:{number:19}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+          //  console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip8(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №8(Vip)';
+        this.oborudToToast = 'Компьютер №8(Vip)';
+        axios.get('/data',{params:{number:20}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip9(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №9(Vip)';
+        this.oborudToToast = 'Компьютер №9(Vip)';
+        axios.get('/data',{params:{number:21}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        pcVip10(){
+            this.endBron=null;
+            this.PriceShow = false;
+            if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+            this.successUved = '';
+
+            this.timeUser = '';
+            this.timeMinuteUser ='';
+            this.activeCustom = 0;
+        this.modalValue=1;
+        this.oborud = 'Компьютер №10(Vip)';
+        this.oborudToToast = 'Компьютер №10(Vip)';
+        axios.get('/data',{params:{number:22}}).then(response =>{
+            let test =  JSON.parse(response.data)
+            this.keyOborud = test[0].pk;
+            this.value = test[0].fields
+           // console.log(this.value);
+            this.currentDate = document.getElementById('datePicker3').value = todayYep;
+            this.dinamicId = 'datePicker3';
+
+            }
+            )
+
+        },
+        garderob(){
+            this.PriceShow = false;
+            this.successUved = '';
+
+        this.modalValue=1;
+        this.oborud = 'Гардероб';
+        this.value = "garderob";
+
+        },
+        VipZone(){
+            this.PriceShow = false;
+            this.successUved = '';
+
+            
+        this.modalValue=1;
+        this.oborud = 'Зона(Vip)';
+        this.value = "vipzone";
+
+
+        },
+        coffee(){
+            this.PriceShow = false;
+            this.successUved = '';
+
+        this.modalValue=1;
+        this.oborud = 'Кофе';
+        this.value = "coffee";
+
+        },
+        toilet(){
+            this.modalValue=1;
+            this.oborud = 'Наши туалеты';
+            this.value='toilet';
+        }
+
+
+        },
+        watch:{
+            currentDate(newValue,oldValue){
+                 this.activeCustom = 0;
+                dayOfWeek = new Date(newValue).getDay();
+                isWeekend = (dayOfWeek === 6) || (dayOfWeek  === 0); 
+              //  console.log(isWeekend)
+                if(this.oborud=='Компьютер №10(Vip)'
+                || this.oborud=='Компьютер №9(Vip)' 
+                || this.oborud=='Компьютер №8(Vip)'
+                || this.oborud=='Компьютер №7(Vip)'
+                || this.oborud=='Компьютер №6(Vip)'
+                || this.oborud=='Компьютер №5(Vip)'
+                || this.oborud=='Компьютер №4(Vip)'
+                || this.oborud=='Компьютер №3(Vip)'
+                || this.oborud=='Компьютер №2(Vip)'
+                || this.oborud=='Компьютер №1(Vip)'){
+                    if(isWeekend){
+                         this.price = 100;
+                    } else {
+                         this.price = 90;
+                    }
+                }
+                if(this.oborud == 'Компьютер №10(standart)'
+                || this.oborud == 'Компьютер №9(standart)'
+                || this.oborud == 'Компьютер №8(standart)'
+                || this.oborud == 'Компьютер №7(standart)'
+                || this.oborud == 'Компьютер №6(standart)'
+                || this.oborud == 'Компьютер №5(standart)'
+                || this.oborud == 'Компьютер №4(standart)'
+                || this.oborud == 'Компьютер №3(standart)'
+                || this.oborud == 'Компьютер №2(standart)'
+                || this.oborud == 'Компьютер №1(standart)'
+                ){
+                    if(isWeekend){
+                         this.price = 80;
+                    } else {
+                         this.price = 70;
+                    }
+                }
+                if(this.oborud == 'PlayStation(Vip)'){
+                    if(isWeekend){
+                this.price = 300;
+                   } else {
+                this.price = 250;
+                    }
+                }
+                if( this.oborud == 'PlayStation(standart)'){
+                    if(isWeekend){
+                       this.price = 250;
+                        } else {
+                        this.price = 200;
+                      }
+                }
+                
+               // console.log(this.price)
+            }
+        }
+
+
+     }
+    Vue.createApp(EventHandling).mount('#app');
+
+</script>
+<!--
+
+T e m p l a t e M o
+
+-->
+
+{% endblock %}

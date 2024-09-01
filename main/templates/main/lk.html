@@ -1,0 +1,713 @@
+
+{% extends 'main/layout.html' %}
+
+{% block title %}Half-Cloud{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+
+
+    
+<main>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container justify-content-around">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'main/img/logo.svg' %}" alt="" style="width: 30vh">
+
+            </a>
+
+            <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Войти</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_1' %}">Главная</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_2' %}" style="white-space: nowrap;">О нас</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_3' %}">Бронирование</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_4' %}">Администраторы</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_5' %}">Цены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_6' %}">Турниры</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'section_7' %}">Контакты</a>
+                    </li>
+                </ul>
+
+
+
+                
+
+
+
+                {% if request.user.is_authenticated %}
+
+
+<div class="dropstart" style="margin-left:0px">
+  <a class="btn custom-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      {{request.user}}
+  </a>
+
+  <ul class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" style="padding:1vh;font-size:2.5vh;" href="{% url 'home' %}">Главная</a></li>
+    <li><a class="dropdown-item" style="padding:1vh;font-size:2.5vh" href="{% url 'logout' %}">Выход</a></li>
+  </ul>
+</div>
+                        {% else %}
+                        <a href="{% url 'auth' %}" class="btn custom-btn d-lg-block d-none">Войти</a>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="ticket-section section-padding">
+        <div class="section-overlay"></div>
+
+        <div class="container" style="padding:0px;width:100%" >
+            
+                <div id="app" v-cloak style="width:auto">
+
+
+                    <div aria-live="polite" aria-atomic="true" class="position-relative">
+                        <!-- Позиционируйте его: -->
+                        <!-- - `.toast-container` для промежутка между тостами -->
+                        <!-- - `.position-absolute`, `top-0` & `end-0` чтобы тосты располагались в правом верхнем углу -->
+                        <!-- - `.p-3` чтобы тосты не прилипали к краю контейнера  -->
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                       <!-- всплывающее уведомление Bron -->
+                       <!-- <div class="position-fixed bottom-0 end-0 p-3 "  style="z-index: 11"> -->
+                        <div id="liveToast" class="toast " v-if="toastBron==1" :class="[toastBron==1 ? 'show' : 'hide' ]"  role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="toast-header" style="background: #f7943c;">
+                            
+                            <strong class="me-auto" style="color:white;">Half-cloud</strong>
+                          <!--  <small>11 мин назад</small> -->
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+                          </div>
+                          <div class="toast-body text-center">
+                         
+                          {% verbatim %} Бронь {{oborudToToast}} на время {{timeToToast}} отменена. {% endverbatim %}
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                       <!-- --- -->
+    
+                          <!-- всплывающее уведомление отмены участия в турнире -->
+    <!-- <div class="position-fixed bottom-0 end-0 "style="z-index: 11"> -->
+    <div id="liveToast1" class="toast "  v-if="toastTour==1"  :class="[toastTour==1 ? 'show' : 'hide' ]"  role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header" style="background: #f7943c;">
+        
+        <strong class="me-auto" style="color:white;">Half-cloud</strong>
+      <!--  <small>11 мин назад</small> -->
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+      </div>
+      <div class="toast-body text-center">
+            Участие в турнире {% verbatim %}{{nameTournamentToToast}}{% endverbatim %} отменено.
+      </div>
+    </div>
+    <!-- </div> -->
+    
+    <!-- --- -->
+    </div>
+    </div>
+
+
+
+
+
+
+                <div class="col-lg-15 col-15 mx-auto" style="margin-top:10vh;" style="max-width:100%">
+                    <div class="custom-form ticket-form mb-5 mb-lg-0" style="max-width:100%;padding:5vh" action="#" method="post" role="form">
+                        <h2 class="text-center mb-4">Личный кабинет</h2>
+                       
+                        <div class="ticket-form-body">
+                            <div class="container">
+                                <div class="d-flex justify-content-center">
+                                    <!-- {% verbatim %}{{phone}}{% endverbatim %} -->
+                                    <label  class="col-sm-19 col-form-label text-center" width="100%" for="balance_vg">Дата регистрации: {% verbatim %}{{dateJoined1}}{% endverbatim %}
+                                    </label>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <label  class="col-sm-19 col-form-label text-center" width="100%" for="balance_vg">Дата последнего входа: {% verbatim %}{{lastLogin}}{% endverbatim %}
+                                        </label>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-4">
+
+                                        <div class="list-group" style="border-radius: 10px;">
+                                            <button type="button" class="list-group-item list-group-item-action" disabled>Меню</button>
+                                            <button type="button" class="list-group-item list-group-item-action "  @click="activeBron=!activeBron;activeTour=false;numberUser=false;changePass=false" :class="[activeBron   ==true ? 'activeOrange' : '']" aria-current="true">
+                                              Бронирования
+                                            </button>
+                                            <button type="button" class="list-group-item list-group-item-action" @click="activeTour=!activeTour;activeBron=false;numberUser=false;changePass=false" :class="[activeTour   ==true ? 'activeOrange' : '']" >Турниры </button>
+                                            <button type="button" class="list-group-item list-group-item-action" @click="numberUser=!numberUser;activeBron=false;activeTour=false;changePass=false" :class="[numberUser   ==true ? 'activeOrange' : '']">Номер телефона</button>
+                                            <button type="button" class="list-group-item list-group-item-action" @click="changePass=!changePass;activeBron=false;activeTour=false;numberUser=false" :class="[changePass   ==true ? 'activeOrange' : '']" >Сменить пароль</button>
+                                            <!-- <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
+                                          </div>
+
+
+                                    </div>
+                                    <div class="col-8">
+                                        
+                                        <!--НОМЕР ТЕЛЕФОНА -->
+                                        <div class="d-flex justify-content-center">
+                                            <div v-show="numberUser">
+                                                <div class="d-flex justify-content-center">
+                                    <!-- <label for="tgName">Введите никнейм в Телеграмме</label> -->
+                                        <input id="tgName" type="text" class="form-control tel" v-model="phone" placeholder="Введите номер телефона" style="width:35vh;">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <span @click="saveNumber" v-if="phoneCheck==false" class="btn btn-outline-success">Сохранить</span>
+                                    <span @click="saveNumber" v-if="phoneCheck==true" class="btn btn-outline-success">Изменить</span>
+
+                                </div>
+                                            </div>
+                                        </div>
+                                        <!--КОНЕЦ НОМЕР ТЕЛЕФОНА -->
+
+                                         <!-- СМЕНИТЬ ПАРОЛЬ -->
+                                    <div class="d-flex justify-content-center"    style="margin-top:3vh;">
+                                        <div v-show="changePass">
+                                            <span v-show="oldPassFalse==true">Неверный старый пароль</span>
+                                    <input type="password"  class="form-control " :class="[oldPassFalse==true ? 'dangerOldPass' : '']" v-model="old_password" placeholder="Введите старый пароль" > 
+                                    <input type="password" class="form-control" v-model="new_password" placeholder="Введите новый пароль">
+                                    <input type="password" class="form-control" v-model="new_double_password" placeholder="Повторите новый пароль">
+                                    <div class="d-flex justify-content-center"><button @click="changePassword" class="btn btn-outline-success" >Изменить пароль</button></div>
+
+                                         </div>
+                                    </div>
+                                  <!-- КОНЕЦ СМЕНИТЬ ПАРОЛЬ -->
+
+                              
+
+                                        </div>
+                                  </div>
+                           
+                          
+                            
+                    
+                               
+                   
+                            <!-- <div class="d-flex justify-content-center">
+                                <label for="tgName">Введите никнейм в Телеграмме</label><input id="tgName" type="text" class="form-control">
+                            </div> -->
+                            
+                                    <!-- <div class="d-flex justify-content-center"><button @click="numberUser=!numberUser" class="btn btn-outline-info" style="margin-bottom:15px;" >Добавить номер телефона</button></div>
+                                    <div class="d-flex justify-content-center"><button @click="changePass=!changePass" class="btn btn-outline-info" style="margin-bottom:15px;" >Сменить пароль</button></div>
+                                    <div class="d-flex justify-content-center"><button @click="activeBron=!activeBron" class="btn btn-outline-info" style="margin-bottom:15px;" >Показать историю бронирований</button></div>
+                                    <div class="d-flex justify-content-center"><button @click="activeTour=!activeTour" class="btn btn-outline-info" >Показать участие в турнирах</button></div> -->
+                                    <!-- телефон -->
+                                 
+                                    <!-- --- -->
+                                   
+   <!-- БРОНИРОВАНИЯ -->  
+   <div class="d-flex justify-content-center"  style="margin-top:3vh;">
+                                        
+    <table class="table table-hover" v-show="activeBron" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Начало</th>
+            <th scope="col">Конец</th>
+            <!-- <th scope="col">Номер бронирования</th> -->
+            <th scope="col">Действия</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr  v-for="(bron,idx) in allBronUser" :key="idx" :class="[new Date(bron.datestart)>correntDate ? ' table-success' : ' table-danger']" >
+            <th scope="row">{% verbatim %}{{bron.equipment}}{% endverbatim %}</th>
+            <td>{% verbatim %}{{bron.start}}{% endverbatim %}</td>
+            <td>{% verbatim %}{{bron.end}}{% endverbatim %}</td>
+            <!-- <td>{% verbatim %}{{bron.start}}{% endverbatim %}</td> -->
+            <!-- <td>{% verbatim %}{{bron.key}}{% endverbatim %}</td> -->
+            <td v-if="new Date(bron.datestart)>correntDate"><button class="btn btn-outline-danger" @click="RegisterBackBron(bron)" >Отменить бронь</button></td>
+            <td v-else></td>
+        </tr>
+        
+        </tbody>
+      </table>
+  
+</div>
+<!-- КОНЕЦ БРОНИРОВАНИЯ -->  
+                                    
+
+                                        <div class="d-flex justify-content-center"  style="margin-top:3vh;">
+                                        
+                                            <table class="table table-hover" v-show="activeTour">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col">Название турнира</th>
+                                                    <th scope="col">Дата регистрации на турнир</th>
+                                                    <th scope="col">Дата начала турнира</th>
+                                                    
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr v-for="(tour,idx) in allTourUser" :key="idx" :class="[new Date(tour.dateStartTour)>correntDate  ? ' table-success' : ' table-danger']">
+                                                    <th scope="row">{% verbatim %}{{tour.nameTour}}{% endverbatim %}</th>
+                                                    <td>{% verbatim %}{{tour.dateRegister}}{% endverbatim %}</td>
+                                                    <td>{% verbatim %}{{tour.dateStartTour}}{% endverbatim %}</td>
+                                                    <td v-if="tour.nameTour=='FastCup Half-Cloud'">Команд:{% verbatim %} <strong>{{quantityCs2}}</strong>{% endverbatim %}</td>                                                    <td v-if="tour.pk==1">Количество команд:{% verbatim %}{{quantityCs2}}{% endverbatim %}</td>
+                                                    <td v-if="tour.nameTour=='Open Cup Warface Half-Cloud'">Команд:{% verbatim %}<strong>{{quantityWarface}}</strong>{% endverbatim %}</td>
+                                                    <td v-if="tour.nameTour=='Dota Pro Circuit Half-Cloud'">Команд:{% verbatim %}<strong>{{quantityDota2}}</strong>{% endverbatim %}</td>
+
+                                                    <td v-if="new Date(tour.dateStartTour)>correntDate"><button class="btn btn-outline-danger" @click="RegisterBackTour(tour)">Отменить участие</button></td>
+                                                    <td v-else></td>
+                                                  </tr>
+                                                
+                                                </tbody>
+                                              </table>
+                                          
+                                        </div>
+                                
+                                    </div>
+                            </div>
+<!--                            <input type="text" name="ticket-form-name" id="" class="form-control" placeholder="Имя" required>-->
+
+
+<!--                            <input type="text" name="ticket-form-name" id="ticket-form-name" class="form-control" placeholder="Логин" required>-->
+
+<!--                            <input type="tel" class="form-control" name="ticket-form-phone" placeholder="Пароль"  required="">-->
+
+<!--                            <input type="tel" class="form-control" name="ticket-form-phone" placeholder="Повторите пароль"  required="">-->
+
+
+                            <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                               <!-- <button type="submit" class="form-control" >Войти</button> -->
+                            </div>
+                        
+                        </div>
+                </div>
+            </div>
+          </div>
+    </section>
+</main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="site-footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12">
+                    <h2 class="text-white mb-lg-0">
+                        <img src="{% static 'main/img/logo.svg' %}" alt="" style="width: 50vh">
+                    </h2>
+                </div>
+
+                <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                    <ul class="social-icon d-flex justify-content-lg-end">
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link">
+                                <span class="bi-telegram"></span>
+                            </a>
+                        </li>
+
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link">
+                                <span class="bi-youtube"></span>
+                            </a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link">
+                                <span class="bi-whatsapp"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+                               <!-- <div class="col-lg-6 col-12 mb-4 pb-2">-->
+            <!--                        <h5 class="site-footer-title mb-3">Links</h5>-->
+
+            <!--                        <ul class="site-footer-links">-->
+            <!--                            <li class="site-footer-link-item">-->
+            <!--                                <a href="#" class="site-footer-link">Home</a>-->
+            <!--                            </li>-->
+
+            <!--                            <li class="site-footer-link-item">-->
+            <!--                                <a href="#" class="site-footer-link">About</a>-->
+            <!--                            </li>-->
+
+            <!--                            <li class="site-footer-link-item">-->
+            <!--                                <a href="#" class="site-footer-link">Artists</a>-->
+            <!--                            </li>-->
+
+            <!--                            <li class="site-footer-link-item">-->
+            <!--                                <a href="#" class="site-footer-link">Schedule</a>-->
+            <!--                            </li>-->
+
+            <!--                            <li class="site-footer-link-item">-->
+            <!--                                <a href="#" class="site-footer-link">Pricing</a>-->
+            <!--                            </li>-->
+
+            <!--                            <li class="site-footer-link-item">-->
+            <!--                                <a href="#" class="site-footer-link">Contact</a>-->
+            <!--                            </li>-->
+            <!--                        </ul>-->
+            <!--                    </div> -->
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                <h5 class="site-footer-title mb-3">Остались вопросы?</h5>
+
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: +7(917)-673-94-81" class="site-footer-link">
+                        +7(917)-673-94-81
+                    </a>
+                </p>
+
+                <p class="text-white d-flex">
+                    <a href="mailto:hello@company.com" class="site-footer-link">
+                        HalfCloud@mail.ru
+                    </a>
+                </p>
+            </div>
+
+            <!--                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">-->
+            <!--                        <h5 class="site-footer-title mb-3">Location</h5>-->
+
+            <!--                        <p class="text-white d-flex mt-3 mb-2">-->
+            <!--                        Silang Junction South, Tagaytay, Cavite, Philippines</p>-->
+
+            <!--                        <a class="link-fx-1 color-contrast-higher mt-3" href="#">-->
+            <!--                            <span>Our Maps</span>-->
+            <!--                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>-->
+            <!--                        </a>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text"> © Half-Cloud</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+</footer>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script> -->
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  [].forEach.call( document.querySelectorAll('.tel'), function(input) {
+    var keyCode;
+    function mask(event) {
+      event.keyCode && (keyCode = event.keyCode);
+      var pos = this.selectionStart;
+      if (pos < 3) event.preventDefault();
+      var matrix = "+7 (___) ___ ____",
+          i = 0,
+          def = matrix.replace(/\D/g, ""),
+          val = this.value.replace(/\D/g, ""),
+          new_value = matrix.replace(/[_\d]/g, function(a) {
+              return i < val.length ? val.charAt(i++) : a
+          });
+      i = new_value.indexOf("_");
+      if (i != -1) {
+          i < 5 && (i = 3);
+          new_value = new_value.slice(0, i)
+      }
+      var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+          function(a) {
+              return "\\d{1," + a.length + "}"
+          }).replace(/[+()]/g, "\\$&");
+      reg = new RegExp("^" + reg + "$");
+      if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) {
+        this.value = new_value;
+      }
+      if (event.type == "blur" && this.value.length < 5) {
+        this.value = "";
+      }
+    }
+
+    input.addEventListener("input", mask, false);
+    input.addEventListener("focus", mask, false);
+    input.addEventListener("blur", mask, false);
+    input.addEventListener("keydown", mask, false);
+
+  });
+
+});
+
+
+        var auth_user_id1 = {{request.user.id}};
+
+      const framework  = {
+    data(){
+    return{
+        phoneCheck:false,
+        phone:'',
+        numberUser:false,
+        old_password:'',
+        new_password:'',
+        new_double_password:'',
+        oldPassFalse:false,
+        oborudToToast:'',
+        timeToToast:'',
+        changePass:false,
+        nameTournamentToToast:'',
+        toastTour:0,
+        toastBron:0,
+        activeBron:true,
+        activeTour:false,
+        dateJoined1:'',
+        lastLogin:'',
+        correntDate:'',
+        allBronUser:[],
+        allTourUser:[],
+        quantityWarface:null,
+        quantityDota2:null,
+        quantityCs2:null,
+    }
+    },
+    async mounted() {
+       await this.checkNumber();
+       await this.getDataUser();
+       await this.getBronUser();
+       await this.getTourUser();
+       
+        },
+    methods:{
+
+        checkNumber(){
+            axios.get('/checkNumber',{params:{UserId:auth_user_id1}}).then(response=>{
+                let res = JSON.parse(response.data);
+                if(res[0]!==undefined){
+                this.phone = res[0].fields.phoneNumber;
+                this.phoneCheck = true;
+                //console.log(this.phoneCheck)  
+
+                } else{
+                    this.phone = '';
+                    this.phoneCheck = false;
+                   // console.log(this.phoneCheck)  
+                }
+            })
+        },
+        saveNumber(){
+            if(this.phone.length>17){
+               this.phone =  this.phone.slice(0,17);
+              //  console.log(this.phone);
+            }
+            let checkPhone;
+            if(this.phoneCheck==false){
+                checkPhone = '0';
+            } else {checkPhone = '1'}
+            axios.get('/saveNumber',{params:{phone:this.phone,UserId:auth_user_id1,check:checkPhone}}).then(response=>{
+                this.checkNumber();
+                if(response.data=='change'){
+                    alert('Номер телефона успешно изменен!')
+                } else if(response.data=='one'){
+                    alert('Вы не изменили номер телефона, он остается прежним')
+                }
+                else {
+                alert('Номер телефона успешно сохранен!')
+                }
+            })
+            
+
+        },
+        changePassword(){
+            if(this.old_password!=this.new_password || this.old_password!=this.new_double_password){
+            if(this.new_password.length<=5){
+                alert('Новый пароль должен содержать больше 5 символов')
+            } else {
+            if(this.new_password!= this.new_double_password){
+                alert('Пароли не совпадают')
+            } else {
+                    axios.get('/changePassword',{params:{UserId:auth_user_id1,old_password:this.old_password,new_password:this.new_password}}).then(response=>{
+                            if(response.data==false){
+                                this.oldPassFalse = true;
+                            } else {
+                                this.oldPassFalse = false;
+                                this.old_password = '';
+                                this.new_double_password = '';
+                                this.new_password = '';
+                                this.changePass = 0;
+                                alert('Пароль успешно изменен!Пожалуйста, авторизуйтесь заново');
+                                window.location.href = "http://127.0.0.1:8000/auth";
+
+                            }
+                    })
+            }
+        
+        }
+    } else {
+        alert('Новый пароль не должен совпадать с старым паролем')
+    }
+        },
+        getTourUser(){
+            this.allTourUser = [];
+            axios.get('/getTourUser',{params:{UserId:auth_user_id1}}).then(response=>{
+                let res = JSON.parse(response.data);
+                res.forEach((el)=>{
+                    //console.log(el)
+                    let nameTour = el.fields.TournamentId;
+                    let dateRegister = el.fields.date_register.split('T')[0] + ' ' + el.fields.date_register.split('T')[1];
+                    
+
+                   // console.log(el)
+                    axios.get('/getNameTour',{params:{nameTour:nameTour}}).then(response=>{
+                            let tour = JSON.parse(response.data);
+                            //console.log(tour)
+                            let obj = {
+                                nameTour:tour[0].fields.nameTournament,
+                                dateRegister:dateRegister,
+                                dateStartTour:tour[0].fields.dateStartTour,
+                                
+                            }
+                            this.allTourUser.push(obj);
+                            this.allBronUser.sort(function(a,b){
+ 
+                             return new Date(a.dateRegister) - new Date(b.dateRegister);
+                      });
+                });
+            });
+        });
+
+        //запрос на количество участников в турнир
+        axios.get('/quantity').then(response=>{
+            this.quantityCs2 = response.data.cs2;
+            this.quantityDota2 = response.data.dota2;
+            this.quantityWarface = response.data.warface;
+
+           // console.log(response.data);
+        })
+
+            
+        },
+        getDataUser(){
+            this.correntDate = new Date();
+            axios.get('/getDataUser',{params:{UserId:auth_user_id1}}).then(response=>{
+                let res = JSON.parse(response.data);
+              //  console.log()
+              let timeJoined1 = res[0].fields.date_joined.split('T')[1].split('.')[0]; 
+                this.dateJoined1 = res[0].fields.date_joined.split('T')[0] + ' в ' + timeJoined1;
+          //      console.log(this.dateJoined)
+              let timeLast = res[0].fields.last_login.split('T')[1].split('.')[0];
+                this.lastLogin = res[0].fields.last_login.split('T')[0] + ' в ' + timeLast ;
+
+            })
+        },
+        RegisterBackBron(bron){
+           // console.log(bron)
+            this.oborudToToast = bron.equipment;
+            this.timeToToast = bron.datestart.split('T')[0] + ' ' + bron.datestart.split('T')[1];
+            let date = new Date(bron.datestart);
+            date.setMinutes(date.getMinutes() - 60);
+        
+            // console.log(date)
+            // console.log(this.correntDate)
+            if(this.correntDate>date){
+                alert('Вы не сможете отменить бронь, так как до брони осталось меньше часа.')
+            }
+            else {
+           let podtv =  confirm('Вы уверены, что хотите отменить бронь?');
+                if(podtv){
+                    axios.get('/getCloseBron',{params:{pk:bron.pk}}).then(response=>{
+                        this.getBronUser();
+                        this.toastBron = 1;
+                    })
+                }
+            }
+        },
+        RegisterBackTour(tour){
+            console.log(tour)
+            this.nameTournamentToToast = tour.nameTour;
+
+            let podtv = confirm('Вы уверены, что хотите отменить участие в турнире?');
+            if(podtv){
+                axios.get('/RegisterBackTour',{params:{nameTour:tour.nameTour,authUserId:auth_user_id1}}).then(response => {
+                 this.getTourUser();
+                 this.toastTour = 1;
+            })
+            //setTimeout(()=>this.toastTour=0, 5000)
+        }
+        },
+
+        getBronUser(){
+            this.allBronUser = [];
+            axios.get('/getBronUser',{params:{UserId:auth_user_id1}}).then(response=>{
+                let res = JSON.parse(response.data);
+                
+                res.forEach(el=>{
+                    //console.log(el)
+                        let peref = el.fields.periphery;
+                        axios.get('/getEquipment',{params:{eq:el.fields.equipment}}).then(response=>{
+                            let eq = JSON.parse(response.data);
+                            let equipment = eq[0].fields.name
+                            let date = new Date(el.fields.end_date)
+                            let datestart = el.fields.time_start
+                            let start = el.fields.time_start.split('T')[0] + ' в ' + el.fields.time_start.split('T')[1]
+                            let end = el.fields.end_date.split('T')[0] + ' в ' + el.fields.end_date.split('T')[1]
+                            let obj = {
+                            datestart:datestart,
+                            equipment:equipment,
+                            start:start,
+                            end:end,
+                            // key:el.fields.comment,
+                            date:date,
+                            pk:el.pk
+                        };
+                        this.allBronUser.push(obj);
+                        this.allBronUser.sort(function(a,b){
+ 
+        return new Date(a.date) - new Date(b.date);
+});
+                       // console.log(this.allBronUser)
+                        });
+                        
+
+                });
+            
+                //console.log(this.allBronUser)
+
+            })
+        }
+    }    
+
+    };
+    Vue.createApp(framework).mount('#app');
+
+</script>
+
+
+
+{% endblock %}
